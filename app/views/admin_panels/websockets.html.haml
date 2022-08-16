@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h3
+
+      = "Websockets #{@active_devices}/#{@channels.size}"
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th User name
+          %th Active devices
+          %th
+          -#%th
+          %th
+      %tbody
+        - @channels.each_with_index do |channel,index|
+          %tr
+            %td= index+1
+            %td= get_user_for_channel(@users,channel[0])
+            %td= channel[1].subscribers.size
+            %td= channel[0]
+            %td
+
+

@@ -1,0 +1,81 @@
+
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h5 License pool info
+      .panel-body
+        %ul.list-group
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Name
+              .col-md-8.text-right
+                =@license_pool.name
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Max Licenses
+              .col-md-8.text-right
+                %span.badge=@license_pool.max_lic
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Allocated license counter
+              .col-md-8.text-right
+                %span.badge=@license_pool.license_ids.length
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Unused licenses
+              .col-md-8.text-right
+                %span.badge=@license_pool.max_lic-@license_pool.license_ids.length
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h5
+          Financial info
+          %b (Not Implemented)
+      .panel-body
+        %ul.list-group
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Name
+              .col-md-8.text-right
+                =@license_pool.name
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Max Licenses
+              .col-md-8.text-right
+                %span.badge=@license_pool.max_lic
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Allocated license counter
+              .col-md-8.text-right
+                %span.badge=@license_pool.license_ids.length
+          %li.list-group-item
+            .row
+              .col-md-4
+                %b Unused licenses
+              .col-md-8.text-right
+                %span.badge=@license_pool.max_lic-@license_pool.license_ids.length
+.row
+
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .panel-title.pull-left
+          %h5
+            Licenses
+        -if can? :allocate_new, @license_pool
+          .pull-right
+            = link_to "Allocate new license",new_allocation_user_license_pool_path(user_id: @user.id, id: @license_pool.id) , class: "btn btn-default"
+        .clearfix
+      = render partial: "licenses/licenses_table"
+-#List licenses

@@ -1,0 +1,5 @@
+-@category.errors.messages.each do |key|
+  %li.alert.alert-danger
+    %label{for:"category_#{key[0].to_s}"}
+      - @category.errors[key[0]].each do |msg|
+        = @category.errors.full_message(key[0], msg)

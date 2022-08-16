@@ -1,0 +1,42 @@
+%head
+  %title
+    Seamantec -
+    =yield :title
+  = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+  = javascript_include_tag "application", "data-turbolinks-track" => true
+  = javascript_include_tag "admin", "data-turbolinks-track" => true if current_user.present? && current_user.is_admin?
+  -#= javascript_include_tag "https://malsup.github.com/jquery.form.js"
+  = render partial: "layouts/fb_script"
+  = yield :header
+  %meta{charset:"UTF-8"}
+  %meta{:name=>"viewport",:content=>"width=device-width, initial-scale=1, maximum-scale=1"}
+  %meta{name:"google-site-verification", content:"2D-an2nf_ILJK9u1qu23F-mn4UKwVWov9f74na-baIM"}
+  %meta{name:"msvalidate.01", content:"0B46655FAE27DEA8AE646E22280BFF02"}
+  %meta{property: "og:url", content: HOST}
+  %meta{property: "og:site_name", content: "Seamantec"}
+  %meta{property: "og:image", content: HOST + image_path("fb/polar.jpg")}
+  %meta{property: "og:image:type", content: "image/jpeg"}
+  %meta{property: "og:image:width", content: "1920"}
+  %meta{property: "og:image:height", content: "1080"}
+
+  %meta{property: "og:image", content:HOST + image_path("fb/alarms.jpg")}
+  %meta{property: "og:image:type", content: "image/jpeg"}
+  %meta{property: "og:image:width", content: "1920"}
+  %meta{property: "og:image:height", content: "1080"}
+
+  %meta{property: "og:image", content:image_url("fb/main1.jpg")}
+  %meta{property: "og:image:type", content: "image/jpeg"}
+  %meta{property: "og:image:width", content: "1920"}
+  %meta{property: "og:image:height", content: "1080"}
+
+  %meta{name:"description", content:"Seamantec is a recently founded company committed to high quality software development. Creator of Edo Instruments an easy to use software for vessel monitoring, data analysing"}
+
+  = csrf_meta_tags
+  %link{rel: "shortcut icon", href:"/favicon.ico", type: "image/x-icon"}
+  %link{rel: "icon", href:"/favicon.ico", type: "image/x-icon"}
+  = ::NewRelic::Agent.browser_timing_header rescue ""
+  = yield :header
+  %script
+    $(function () {
+    =yield :script
+    });

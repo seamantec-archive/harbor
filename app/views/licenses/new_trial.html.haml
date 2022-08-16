@@ -1,0 +1,12 @@
+.row
+  %ul
+    -@errors.each do |msg|
+      - msg.each do |m|
+        %li.alert.alert-danger
+          =m
+.row
+  .col-md-4.text-right
+    %h3
+      Create trial license
+
+  = render :partial => 'new_trial_form'

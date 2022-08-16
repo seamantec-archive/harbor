@@ -1,0 +1,14 @@
+%tr
+  %td
+    = link_to invoice.invoice_number.to_s, invoice_array_invoice_path(invoice_array_id: @invoice_array.id, id: invoice)
+  %td
+    = invoice.created_at.to_s
+  %td
+    = invoice.status
+  %td
+    = invoice.has_storno?
+  %td
+    = link_to "show", invoice_array_invoice_path(invoice_array_id: @invoice_array.id, id: invoice)
+  - if invoice.status != Invoice::PRINTED
+    %td
+      = link_to "edit", edit_invoice_array_invoice_path(invoice_array_id: @invoice_array.id, id: invoice)

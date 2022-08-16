@@ -1,0 +1,15 @@
+%tr
+  %td
+    = coupon_group_counter+1
+  %td
+    = coupon_group.name
+  %td
+    = coupon_group.coupons.size
+  %td
+    = coupon_group.coupons.size
+  %td
+    = coupon_group.created_at.strftime('%Y-%m-%d')
+  %td
+    = link_to "Show", coupon_path(coupon_group), class: "btn btn-default"
+  %td
+    = link_to "Print", print_coupon_path(coupon_group), class: "btn btn-default", target: "_blank"

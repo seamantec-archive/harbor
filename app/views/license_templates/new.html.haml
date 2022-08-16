@@ -1,0 +1,33 @@
+.row
+  -@license_template.errors.full_messages.each do |msg|
+    %li.alert.alert-danger
+      =msg
+
+.row
+  .col-md-12
+    %h3
+      New License Template
+    = form_for(@license_template, html:{:class=>"form-horizontal"}) do |f|
+      -unless @license_template.new_record?
+        = f.hidden_field :id
+      .form-group
+        = f.label :name, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :name, class:"form-control"
+      .form-group
+        = f.label :license_type, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.select :license_type, [[License::DEMO,License::DEMO], [License::TRIAL, License::TRIAL], [License::COMMERCIAL, License::COMMERCIAL]], class:"form-control"
+      .form-group
+        = f.label :license_sub_type, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.select :license_sub_type, LicenseType.all.map{|x| [x.name,x.name]}, class:"form-control"
+      .form-group
+        = f.label :expire_days, :class=>"col-md-2 control-label"
+        .col-md-1
+          = f.text_field :expire_days, class:"form-control"
+      .form-group
+        = f.label :explicit_expire, :class=>"col-md-2 control-label"
+        .col-md-1
+          = f.check_box :explicit_expire,{ class:"form-control"}, "true", "false"
+      %div= f.submit "Save", class:"btn btn-default"

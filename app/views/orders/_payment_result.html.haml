@@ -1,0 +1,17 @@
+.col-xs-6
+  %div{ class: "panel#{(!payment_result.is_error) ? " panel-default" : " panel-danger"}" }
+    .panel-heading
+      %h3.panel-title
+        ="Paypal result (#{payment_result.request_type})"
+    .panel-body
+      .row
+        .col-xs-12 Result:
+        .col-xs-12
+          - begin
+            %pre.payment_result= JSON.pretty_generate(JSON.parse(payment_result.result))
+          -rescue
+            %pre.payment_result= payment_result.result
+        .col-xs-4 Created at:
+        .text-right.col-xs-8= payment_result.created_at
+        .col-xs-4 Updated at:
+        .text-right.col-xs-8= payment_result.updated_at

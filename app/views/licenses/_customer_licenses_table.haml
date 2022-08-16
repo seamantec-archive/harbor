@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.small #
+          %th.small Serial key
+          %th.small Activation key
+          %th.small Lic. type
+          %th.small Created at
+          %th.small Expire at
+          %th.small Download
+      %tbody
+        = render partial: "licenses/customer_license", collection: @licenses
+.row
+  .col-md-12
+    = paginate @licenses,:theme => 'twitter-bootstrap-3'

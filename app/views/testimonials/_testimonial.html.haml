@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    %i
+      = "\"#{testimonial.full_text}\""
+    ="- #{testimonial.from}"
+- if testimonial.image_path.present?
+  %br
+  .row
+    .col-md-12
+      = image_tag testimonial.image_path, class: "img-responsive"
+- if testimonial.link.present?
+  %br
+  .row
+    .col-md-12
+      = link_to "Visit #{testimonial.from}", testimonial.link, target: "_blank"
+
+-if current_user.present? && current_user.is_admin?
+  = link_to "delete", testimonial_path(testimonial), method: :delete, data: {confirm: "Are you sure to delete?"}
+%hr

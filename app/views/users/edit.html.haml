@@ -1,0 +1,17 @@
+.row
+  -@user.errors.full_messages.each do |msg|
+    %li.alert.alert-danger
+      =msg
+.row
+  %h4
+  = render partial: "users/form", locals:{url: user_path(@user), btn_label: "Save", with_password:false, method: :put}
+
+.row.form-horizontal
+  .col-md-12.col-offset-1
+    .form-group
+      .col-md-8.col-md-offset-4
+        -if current_user.is_admin?
+          = link_to "Reset password", reset_password_user_path(@user), :class=>"btn btn-primary btn-sm"
+        = link_to "Change password", edit_password_user_path(@user), :class=>"btn btn-primary btn-sm"
+
+

@@ -1,0 +1,130 @@
+-unless @invoice.new_record?
+  = f.hidden_field :id
+.row.invoice-companies
+  .col-xs-6
+    %h3
+      Vendor
+    %h4
+      Seamantec Kft.
+    .row
+      .col-xs-10.col-xs-offset-1
+        .row
+          .col-xs-12
+            Budakeszi
+        .row
+          .col-xs-12
+            Szőlőskert utca 5
+        .row
+          .col-xs-12
+            Hungary
+        .row
+          .col-xs-12
+            2092
+        .row
+          .col-xs-12
+            VAT ID: HU24364120
+  .col-xs-6
+    %h3
+      Customer
+    .row
+      .col-xs-10.col-xs-offset-1
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_name, :autofocus => true, placeholder: "Customer name", :class=>"form-control"
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_address, :class=>"form-control", placeholder: "Customer Address"
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_address_2, :class=>"form-control", placeholder: "Customer Address 2"
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_city, :class=>"form-control", placeholder: "Customer city"
+        .row
+          .col-xs-12
+            .form-group
+              = f.country_select :customer_country , {selected: "HU"},{ class: 'form-control' }
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_zip_code, :class=>"form-control", placeholder: "Customer zip code"
+        .row
+          .col-xs-12
+            .form-group
+              = f.text_field :customer_vat_id, :class=>"form-control", placeholder: "Customer VAT ID"
+        .row
+          .col-xs-12
+            .form-group
+              = f.select :currency, options_for_select(@currencies), {selected: @invoice.currency}, {:class=>"form-control",selected: @invoice.currency}
+  .row
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th.col-md-3.text-center
+            Payment method
+          %th.col-md-3.text-center
+            Date of Invoice
+          %th.col-md-3.text-center
+            Date of fulfilment
+          %th.col-md-3.text-center
+            Due
+
+
+      %tbody
+        %tr
+          %td.col-md-3.text-center
+            .col-xs-12
+              .form-group
+                = f.text_field :method_of_payment, :class=>"form-control", placeholder: "Method of payment"
+          %td.col-md-3.text-center
+          %td.col-md-3.text-center
+            .col-xs-12
+              .form-group
+                = f.text_field :date_of_fulfilment, :class=>"form-control datepicker", placeholder: "date_of_fulfilment"
+          %td.col-md-3.text-center
+            .col-xs-12
+              .form-group
+                = f.text_field :due_date, :class=>"form-control datepicker", placeholder: "Due date"
+  .row
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th.col-md-4.text-center
+            Description
+          %th.col-md-1.text-center
+            Amount
+          %th.col-md-1.text-center
+            Unit Price
+          %th.col-md-1.text-center
+            Net. Price
+          %th.col-md-1.text-center
+            VAT Rate
+          %th.col-md-1.text-center
+            VAT
+          %th.col-md-1.text-center
+            Gross Price
+      %tbody
+        = f.fields_for(:invoice_items) do |ii|
+          -unless ii.object.new_record?
+            = ii.hidden_field :id
+          %tr
+            %td
+              = ii.text_field :description, class: "form-control", placeholder: "Desc"
+            %td
+              = ii.text_field :amount, class: "form-control", placeholder: "Amount"
+            %td
+              = ii.text_field :unit_price, class: "form-control", placeholder: "Unit price"
+            %td
+            %td
+              = ii.text_field :vat_rate, class: "form-control", placeholder: "vat_rate"
+.row
+  .checkbox
+    %label
+      = check_box_tag 'draft', true, (defined?(@draft ? @draft : false))
+      Draft
+.row
+  = submit_tag "Save", class: "btn btn-primary"

@@ -1,0 +1,54 @@
+- if defined? @result_message
+  .row
+    .col-md-12.error-payment
+      %p.small
+        = @result_message
+.row.credit_card_section
+  .col-md-12
+    .row
+      .form-group.col-sm-4
+        = label_tag "Credit Card number",nil, {for:"card_number"}
+        = text_field_for_payment({braintree_name: "number",id:"card_number",class:"form-control input-sm"})
+      .form-group.col-sm-3
+        = label_tag "Expiration date"
+        .row
+          .col-sm-5.col-xs-4
+            = select_for_card_month({id:"expiration_month", class:"form-control input-sm"})
+          .col-sm-1.col-xs-1.expiration_separator
+            = "/"
+          .col-sm-6.col-xs-4
+            = select_for_card_year({id:"expiration_year", class:"form-control input-sm"})
+      .form-group.col-sm-3.col-md-2
+        = label_tag "CVV", nil, {for:"cvv"}
+        .row
+          .col-md-6.col-sm-5.col-xs-3
+            = text_field_for_payment({braintree_name: "cvv",id:"cvv",class:"form-control input-sm", password:true})
+
+    .row
+      .form-group.col-sm-4
+        = label_tag "Card holder name", nil, {for:"cardholder"}
+        = text_field_for_payment({braintree_name: "cardholder_name",id:"cardholder_name",class:"form-control input-sm"})
+      .form-group.col-sm-3
+        = label_tag "Postal code", nil, {for:"postalcode"}
+        = text_field_for_payment({braintree_name: "postal_code",id:"postal_code",class:"form-control input-sm"})
+
+      .form-group.col-sm-5
+        = label_tag "Country", nil, {for:"postalcode"}
+        = select_for_country({id:"country_code",class:"form-control input-sm"})
+
+    .row
+      .col-md-4
+        %br
+        ="<input type=\"submit\" id=\"pay_button\" value=\"Pay\" class='btn btn-primary'>".html_safe
+    -#"<input data-braintree-name="expiration_date" value="10/20">"
+    -#<input type="submit" id="submit" value="Pay">
+    %br
+    %br
+    %br
+    .row
+      .col-md-12.small.text-muted
+        Security is really important to us. That's why we use Braintree (A PayPal company) as our gateway provider. We never store any of your credit card information on our site.
+        = link_to "Braintree Security Infrastructure", "https://www.braintreepayments.com/developers/security", target: "_blank"
+
+
+

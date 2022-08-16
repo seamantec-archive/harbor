@@ -1,0 +1,45 @@
+#faq-accordion {
+  margin-top: 24px;
+}
+
+#faq-accordion .list-unstyled {
+  cursor: pointer;
+}
+
+#faq-accordion li {
+  margin-bottom: 12px;
+}
+
+.question {
+  margin-left: 0.625em;
+}
+
+.faq {
+  h3 {
+    color: #000;
+  }
+  h3.full {
+    padding-top: 0.9375em;
+    padding-bottom: 0.75em;
+  }
+  h4 {
+    color: #000;
+    font-size: 0.875em;
+    font-weight: bold;
+  }
+  h4.full {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+  }
+  .answer {
+    font-size: 0.875em;
+    font-weight: normal;
+  }
+
+  a {
+    color: #000;
+    &:hover {
+      color: #575757;
+    }
+  }
+}

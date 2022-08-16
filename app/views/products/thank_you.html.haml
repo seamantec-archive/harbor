@@ -1,0 +1,32 @@
+%iframe{width: "1", height:"1", frameborder:"0", src:@download_url }
+.row
+  .col-md-12
+    %p
+      %h3 Thanks for downloading!
+      Shortly you will receive an email with a serial number.
+      %br
+      %p.danger
+        If you haven't received it, please check your spam folder to make sure it didn't end up there by accident.
+        %p.small.text-muted
+          If your download didn't start
+          = link_to  "click here", @download_url
+
+%br
+%br
+%br
+.row
+  .col-md-12
+    %h3
+      Short instruction how you can install EDO Instruments
+%br
+-if @os == "mac"
+  = render partial: 'products/install_steps_mac'
+-else
+  = render partial: 'products/install_steps_win'
+%br
+%br
+.row.download
+  .col-xs-12.text-center
+    Now you have downloaded EDO Instruments, check out the
+    = link_to "FAQ", public_faq_path
+    \.

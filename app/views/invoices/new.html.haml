@@ -1,0 +1,5 @@
+%h3="New invoice for #{@invoice_array.name}"
+.row
+  .col-md-12.col-md-offset-1
+    = form_for(@invoice, url: invoice_array_invoices_path(invoice_array_id: @invoice_array), html:{:class=>"form-horizontal", method: :post}) do |f|
+      = render partial: "invoices/form", locals:{f:f}

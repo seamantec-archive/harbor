@@ -1,0 +1,4 @@
+-if @invoice.is_order_invoice
+  = render partial: "invoices/invoice_print", locals:{invoice: @invoice}
+-else
+  = render partial: "invoices/invoice_print_manual", locals:{invoice: @invoice}

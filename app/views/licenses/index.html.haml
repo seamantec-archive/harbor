@@ -1,0 +1,5 @@
+
+-#- if current_user.is_admin? || current_user.is_partner?
+-#  = render partial: 'licenses_table'
+-#- else
+= render partial: 'customer_licenses_table'

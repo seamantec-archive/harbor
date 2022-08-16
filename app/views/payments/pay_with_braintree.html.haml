@@ -1,0 +1,5 @@
+- if @result.success?
+  Sikeres vasarlas
+-else
+  - @result.errors.each do |e|
+    = "#{e.code}: #{e.message}(#{e.attribute})"

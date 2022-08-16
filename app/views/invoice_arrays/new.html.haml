@@ -1,0 +1,19 @@
+.row
+  .col-md-4
+    %h3 New Invoice Arrays
+.row
+  .col-xs-12
+    = form_for @invoice_array, url: invoice_arrays_path, html:{class: "form-horizontal"} do |f|
+      = render partial: "layouts/common/error_msgs", locals:{model: @invoice_array, model_name: "invoice_array"}
+
+      .form-group.col-xs-12
+        = f.label :name, class: "control-label col-md-4"
+        .col-md-4
+          = f.text_field :name, class:"form-control"
+      .form-group.col-xs-12
+        = f.label :prefix, class: "control-label col-md-4"
+        .col-md-4
+          = f.text_field :prefix, class:"form-control"
+      .row
+        .col-xs-12
+          = submit_tag "Save", class: "btn btn-primary btn-sm"

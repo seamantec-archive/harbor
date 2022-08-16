@@ -1,0 +1,27 @@
+.row
+  .col-xs-10.col-xs-offset-1
+    .well
+      .row
+        .col-md-10.top-pad-5
+          %b
+            = @order.product_item.name
+        .col-md-2.text-right
+          %b.product_items_value
+            = "#{@order.payment.currency_symbol}#{sprintf('%.2f', @order.payment.net_value)}"
+      .row.small
+        .col-md-10.top-pad-5
+          %b
+            VAT(
+            %span.vat_percent
+              = @order.payment.vat_percent
+            ="%)"
+        .col-md-2.text-right
+          %b.product_vat_value
+            = "#{@order.payment.currency_symbol}#{@order.payment.vat_value}"
+      %hr.payment-total
+      .row.top-pad-5
+        .col-md-10.top-pad-5
+          %b Total
+        .col-md-2.text-right
+          %b.product_total_value
+            = "#{@order.payment.currency_symbol}#{@order.payment.total}"

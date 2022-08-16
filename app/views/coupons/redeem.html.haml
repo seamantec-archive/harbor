@@ -1,0 +1,60 @@
+.row
+  .col-md-12
+    = form_for(@coupon, url:post_redeem_coupons_path, html:{:class=>"form-horizontal", method: "post"}) do |c|
+      .form-group.row
+        = c.label :code, class: "col-md-3 control-label"
+        .col-md-4
+          = c.text_field :code,  :class=>"form-control"
+      = fields_for @user do |f|
+        .form-group.row
+          = f.label :email, class: "col-md-3 control-label"
+          .col-md-4
+            = f.email_field :email, :class=>"form-control", disabled:(current_user == @user ? true :false)
+        .form-group.row
+          = f.label :email_confirmation, class: "col-md-3 control-label"
+          .col-md-4
+            = f.email_field :email_confirmation,value:@user.email, :class=>"form-control", disabled:(current_user == @user ? true :false)
+        .form-group.row
+          = f.label :first_name, class: "col-md-3 control-label"
+          .col-md-4
+            = f.text_field :first_name,  :class=>"form-control"
+        .form-group.row
+          = f.label :last_name, class: "col-md-3 control-label"
+          .col-md-4
+            = f.text_field :last_name, :class=>"form-control"
+        - if current_user.blank?
+          .password-fields
+            .form-group.row
+              = f.label :password, class: "col-md-3 control-label"
+              .col-md-4
+                = f.password_field :password, :class=>"form-control"
+            .form-group.row
+              = f.label :password_confirmation, class: "col-md-3 control-label"
+              .col-md-4
+                = f.password_field :password_confirmation, :class=>"form-control"
+        .form-group.row
+          .col-md-8.col-md-offset-3
+            .checkbox
+              %label
+                = f.check_box :accepted_newsletter,{}, "true", "false"
+                I subscribe to the newsletter and acknowledge that the newsletters may contain direct marketing and advertising messages.
+        .form-group.row
+          .col-md-8.col-md-offset-3
+            .checkbox
+              %label
+                = f.check_box :accepted_terms,{}, "true", "false"
+                I have read, understood and hereby accept the
+                = link_to "General Terms and Conditions of Purchase", terms_path, target: "_blank"
+                and the
+                = link_to "Data Protection Policy", data_protection_path, target: "_blank"
+
+      -#.form-group.row
+      -#  .col-md-8.col-md-offset-3
+      -#    .checkbox
+      -#      %label
+      -#        = f.check_box :accepted_digital_content
+      -#        I acknowledge and accept that the software or other digitally downloadable product I order from Seller qualifies as “digital content” within the meaning of the the Directive 2011/83/EU of The European Parliament And Of The Council of 25 October 2011 on consumer rights and the Hungarian Gov. Decree 45/2014 (II. 26.) on the detailed conditions of contract between consumers and traders, therefore I agree that Seller may begin to start the performance of the Agreement and provide me with the downloadable Product and provide you with the serial key immediately on purchase. I acknowledge that by giving my prior express consent for Seller to start the performance, I lose my right of withdrawal regulated in the above Gov. Decree., if as a consumer I would otherwise be entitled to such right.
+
+      .form-group
+        .col-md-8.col-md-offset-3
+          = c.submit "Register", class:"btn btn-default"

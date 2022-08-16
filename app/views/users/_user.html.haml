@@ -1,0 +1,30 @@
+%tr
+  %td.small
+    =user_counter+1
+  %td.small
+    =link_to user.email, user_path(user)
+  %td.small
+    =user.full_name
+  %td.small
+    =user.created_at.strftime('%Y-%m-%d %H:%M') if user.created_at.present?
+  %td.small
+    =user.sign_in_count
+  %td.small
+    =user.devices.count
+  %td.small
+    =user.polars.count
+  %td.small
+    .btn-group
+      %button{type:"button", class:"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown"}
+        Edit
+        %span.caret
+      %ul.dropdown-menu{role:"edit_menu"}
+        %li
+          =link_to "edit", edit_user_path(user)
+          -unless user.suspended?
+            =link_to "suspend", suspend_user_path(user)
+          -else
+            =link_to "resume", resume_user_path(user)
+          -if user.is_anonym
+            = link_to "Activate",activate_anonym_user_path(user)
+          =link_to "delete", user_path(user), method: :delete, data: { confirm: "Are you sure?"}

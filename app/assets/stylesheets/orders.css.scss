@@ -1,0 +1,84 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#payment-method .glyphicon-info-sign {
+  font-size: 0.6em;
+}
+
+#what-is-paypal {
+  color: #428bca;
+  text-decoration: none;
+}
+
+#what-is-paypal:hover {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+pre.paypal_result {
+  height: 250px;
+  overflow-x: auto;
+}
+
+.expiration_separator {
+  width: 6px;
+  padding: 0;
+  margin-top: 3px;
+
+}
+
+.order-steps {
+  //  background-color: #e5e5e5;
+  width: 100%;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #A4ABB6;
+  @include gradient-vertical(#ffffff, #e5e5e5);
+  font-size: 0.85em;
+}
+
+.order-steps.active-step {
+  @include gradient-vertical(#5499f2,#3774ee);
+  color: #ffffff;
+}
+
+.order-steps.left-step {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+}
+
+.order-steps.middle-step {
+  border-left-style: none;
+  border-right-style: none;
+}
+
+.order-steps.right-step {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+}
+
+.order-step-parent {
+  padding: 0;
+}
+
+.error-payment{
+  $payment-error-color: #c21c1c;
+
+  h4{
+    color: $payment-error-color;
+  }
+  color: $payment-error-color;
+}
+
+.vertical-0-75-em{
+  margin-top: 0.75em;
+}
+.vertical-1-125-em{
+  margin-top: 1.125em;
+}

@@ -1,0 +1,189 @@
+-content_for :title do
+  = "EDO Instruments - Easy to use software for vessel monitoring, data analysing"
+#top
+  .container.top-content
+    .static_messages
+      =render "static/main_page_messages"
+    .row
+      .col-md-2.min-height-zero.text-center.col-xs-12
+        %p.logo
+          = image_tag(image_path("EDO_logo_wh_solo.png"), class:"img-logo")
+
+      .col-md-10.col-xs-12.min-height-zero
+        %p.main-quote.text-left
+          Sail smarter with EDO instruments.
+          Stay informed anywhere on your boat,
+          see all your boats data and your performance in real time,
+          analyze recorded data and create your own polar curve
+
+
+.container-fluid
+  #main-page-carousel.carousel.carousel-fade{"data-ride"=>"carousel"}
+    %ol.carousel-indicators
+      %li{"data-target"=>" #main-page-carousel", "data-slide-to"=>"0", class:"active"}
+      %li{"data-target"=>" #main-page-carousel", "data-slide-to"=>"1"}
+      %li{"data-target"=>" #main-page-carousel", "data-slide-to"=>"2"}
+    .carousel-inner{role:"listbox"}
+      .item.active.full-page-feature
+        .first-carousel.carousel-inner-item
+      -#%img{src:image_path("carousel/big_oldguy.png")}
+      .item.full-page-feature
+        .second-carousel.carousel-inner-item
+      .item.full-page-feature
+        .third-carousel.carousel-inner-item
+.container
+  .learn-more
+    .row
+      .col-xs-4.col-xs-offset-4.text-center
+        Learn more
+    .row
+      .col-xs-2.col-xs-offset-5.text-center
+        %span.glyphicon.glyphicon-chevron-down
+
+.container.testimonials
+  .row
+    = render partial: "testimonials/testimonial_quote", collection: @testimonials
+
+#first-feature
+  .container.features.full-page-feature
+    .row.features-header
+      .col-xs-12.text-center
+        %h1 Main features
+        %h3 of EDO instruments for desktop
+    .row.first-row
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/custom_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Fully customizable layout
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/speech_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Human voice based information system
+
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/pcloud_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Visualized performance history
+
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/sync_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Cloud storage and synchronized polar files
+
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/sentences_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            More than 40 NMEA interpreted messages
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/tactictool_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Advanced tactical racing tools
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/polar_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Powerful polar diagram editor
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/performance_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Real time performance analysis
+
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/ais_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            AIS vessel visualization and collision warning
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/replay_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Recorded NMEA log replay for analysis
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/logbook_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Automatically generated logbook function
+      .col-md-3.col-sm-4.col-xs-6.feature-block
+        .col-xs-6
+          %img{src:image_path("features/icons/mp_ico.png"), class:"img-responsive"}
+        .col-xs-6.feature-ico-desc
+          %p
+            Multi platform
+%hr
+.white-section
+  .container
+    .row
+      .col-xs-12.col-md-6.intro-video.text-center
+        -#%iframe{ class:"img-responsive", src:"https://www.youtube.com/embed/RiTC_1xXKWo", frameborder:"0", allowfullscreen:"true"}
+        = link_to image_tag(image_path("edo_shot.png"), class: "img-responsive"),"https://www.youtube.com/watch?v=RiTC_1xXKWo",id:"video_link",class:" video-link"
+
+      .col-xs-12.col-md-6.text-left
+        %h1 See EDO instruments in action
+
+        %br
+        - if AdminPanel.is_store_enabled?
+          = link_to "Buy it now for $99", buy_it_now_orders_path, class: "btn btn-lg btn-buy-now-big"
+        = link_to "Download free demo", new_public_trial_licenses_path, class: "btn btn-lg btn-download-now-big", id:"free_demo_btn"
+
+
+
+%hr
+.white-section
+  .container
+    .row
+      .col-xs-12.col-md-6.text-left
+        %h1 EDO for Mobile devices
+        %p
+          EDO sailing instruments with limited functionality is available for Android on the Google Play Store, and for iPhone and iPad on the App Store. 
+
+        -#%p
+
+        %p.text-left
+          %a{href:"https://play.google.com/store/apps/details?id=air.com.seamantec.mobile.messages", target: "_blank", id: "android_button"}
+            %img{ alt:"Android app on Google Play", src:"https://developer.android.com/images/brand/en_app_rgb_wo_45.png" }
+          %a{href:"https://itunes.apple.com/hu/artist/seamantec/id945379037", target: "_blank", id: "ios_button"}
+            %img{ alt:"iOS App on App Store", src:image_path("app_store.png") }
+      .col-xs-12.col-md-6.mobile-bg.text-center
+        -#= image_tag(image_path("mobile_persp.png"), class:"img-responsive")
+        =  image_tag(image_path("devices_mobile.png"), class:"img-responsive")
+%hr
+.white-section
+  .container
+    .row
+      .col-xs-12.col-md-6.mobile-bg.text-center
+        = link_to image_tag(image_path("polar_video_ss.png"), class: "img-responsive"),"https://www.youtube.com/watch?v=SEBtVgj5-Eg",id:"polar_video_link", class:"video-link"
+      .col-xs-12.col-md-6.text-left
+        %h1 How to create a polar curve
+        %p
+          Professional sailors optimize their sailing performance with the “polar curve”. Unlock the secrets of the polar curve, and sail like the pros with EDO sailing instruments. It's not rocket science; just smarter sailing. Watch the video here.
+%hr
+.white-section
+  .container
+    .row.center-parent
+      .col-xs-12.text-center.top-padding-20-percent
+        %h3.bold
+          We are looking for resellers and business partners!
+        %p
+          For more information please
+          = link_to "Contact us", "mailto:info@seamantec.com"
+      .col-xs-5.col-xs-offset-1.text-right.devices.top-padding-20-percent
+        -#=  image_tag(image_path("web_platforms.png"), class:"img-responsive")
+

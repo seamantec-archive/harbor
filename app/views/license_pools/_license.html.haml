@@ -1,0 +1,16 @@
+%tr
+
+  %td
+    =link_to license.user.email, user_path(license.user) unless license.user.nil?
+  %td
+    = license.expire_at.to_s
+  %td
+    = license.serial_key
+  %td
+    = license.hw_key
+  %td
+    = license.license_type
+  %td
+    = license.license_sub_type unless license.license_sub_type.nil?
+  %td
+    = license.app_version

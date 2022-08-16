@@ -1,0 +1,15 @@
+%h2 Change your password
+= form_for(resource, :as => resource_name, :url => update_password_user_path(resource_name), :html => { :method => :patch }) do |f|
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+
+  .form-group.row
+    = f.label :password, "New password", class:"col-md-2 control-label"
+    .col-md-4
+      = f.password_field :password, :autofocus => true, class:"form-control"
+
+  .form-group.row
+    = f.label :password_confirmation, "Confirm new password", class:"col-md-2 control-label"
+    .col-md-4
+      = f.password_field :password_confirmation, class:"form-control"
+  %div= f.submit "Change my password",class:"btn btn-default"

@@ -1,0 +1,22 @@
+= render partial: "products/common_download", locals:{os: "mac"}
+
+-#.row
+-#  .col-md-12.text-center.small.text-muted
+-#    = link_to "Download for Mac standalone dmg", @release.mac_url
+
+
+-#%h3 Download page
+-#%p Download Edo by Seamantec.
+-#-if @release.present?
+-#  %p
+-#    = link_to "Download for Mac", @release.mac_url, :class=>"btn btn-primary btn-lg"
+-#    %span.small.text-muted
+-#      = "#{@release.version_number} for Mac"
+-#  %p
+-#    .small.text-muted
+-#      = link_to "Get Edo Instruments for Windows computer", download_win_path
+-#  = render partial: "get_trial_license"
+-#- else
+-#  There is no Mac version available at this time. We are working hard on it.
+
+

@@ -1,0 +1,118 @@
+.row
+  .col-xs-12
+    %div{ class: "panel#{(@order.payment.payment_status==Payment::STATUS_SUCCESS) ? " panel-default" : " panel-danger"}" }
+      .panel-heading
+        %h3.panel-title
+          Order details
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th.col-xs-6 User details
+              %th.text-right.col-xs-6= link_to "Show", user_path(id: @order.user.id)
+          %tbody
+            %tr
+              %td.col-xs-6 First name:
+              %td.col-xs-6= @order.user.first_name
+            %tr
+              %td.col-xs-6 Last name:
+              %td.col-xs-6= @order.user.last_name
+            %tr
+              %td.col-xs-6 Email:
+              %td.col-xs-6= @order.user.email
+
+        %table.table
+          %thead
+            %tr
+              %th{ colspan: "2" } Product details
+          %tbody
+            %tr
+              %td.col-xs-6 Category name:
+              %td.col-xs-6= @order.product_category.present? ? @order.product_category.name : "Deleted category"
+            %tr
+              %td.col-xs-6 Item name:
+              %td.col-xs-6=@order.product_item.present? ? @order.product_item.name : "Deleted item"
+            %tr
+              %td.col-xs-6 Number of items:
+              %td.col-xs-6= @order.number_of_items
+
+        %table.table
+          %thead
+            %tr
+              %th{ colspan: "2" } Payment details
+          %tbody
+            %tr
+              %td.col-xs-6 Transaction ID:
+              %td.col-xs-6= @order.payment.transaction_id
+            %tr
+              %td.col-xs-6 Method:
+              %td.col-xs-6= @order.payment.payment_method
+            %tr
+              %td.col-xs-6 Status:
+              %td.col-xs-6
+                - if @order.payment.payment_status == Payment::STATUS_SUCCESS
+                  %span.label.label-success= @order.payment.payment_status
+                - else
+                  %span.label.label-danger= @order.payment.payment_status
+            %tr
+              %td Net value:
+              %td= @order.payment.currency_symbol + ' ' + @order.payment.net_value.to_s
+            %tr
+              %td Vat value:
+              %td= @order.payment.currency_symbol + ' ' + @order.payment.vat_value.to_s
+            %tr
+              %td Vat:
+              %td= @order.payment.vat_percent.to_s + '%'
+        %table.table
+          %thead
+            %tr
+              %th{colspan: "2"} More info
+          %tbody
+            %tr
+              %td.col-xs-6 Request IP address
+              %td.col-xs-6= @order.remote_ip
+            %tr
+              %td.col-xs-6 Request IP address country
+              -#%td.col-xs-6= ip_location(@order.remote_ip)
+
+        -if @order.payment.success?
+          %hr
+          %table.table
+            %thead
+              %tr
+                %th{ colspan: "2" } Invoice
+                -#- if @order.billingo_invoice.nil?
+                - if @order.billingo_invoice.blank?
+                  %th{ colspan: "2" }
+                    = link_to "Create Billingo Invoice", create_billingo_invoice_order_path(@order), class: "btn-sm btn-success"
+
+                %th{ colspan: "2" }
+                  = link_to "Send Billingo Invoice", send_billingo_invoice_order_path(@order), class: "btn-sm btn-success"
+                -#- else
+                -#  %th{ colspan: "2" }
+                -#    = link_to "Show invoice", invoice_array_invoice_path(invoice_array_id: @order.invoice_array, id: @order.invoice), class: "btn-sm btn-success"
+                -#  %th{ colspan: "2" }
+                -#    = link_to "Save invoice as PDF", "#", class: "btn-sm btn-success"
+        %hr
+        %table.table
+          %thead
+            %tr
+              %th User email
+              %th Expire at
+              %th Serial key
+              %th HW key
+              %th Lic type
+              %th Lic sub type
+              %th App version
+              -#%th
+          %tbody
+            = render partial: "licenses/license", collection: @order.licenses
+        %hr
+        .row
+          .col-md-3 Created at:
+          .col-md-3= @order.created_at.to_s(:db)
+          .col-md-3 Updated at:
+          .col-md-3= @order.updated_at.to_s(:db)
+
+  = render partial: "orders/payment_result", collection: @order.payment_results
+

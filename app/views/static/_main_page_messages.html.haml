@@ -1,0 +1,9 @@
+= render partial: "layouts/cookie_notification", locals:{main_page: true}
+.row
+  .col-md-12.column.min-height-zero
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        %div{:class=>"alert-static alert-#{name == :notice.to_s ? "static-success" : "static-danger"} alert-dismissable" }
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+          %h4
+            =msg

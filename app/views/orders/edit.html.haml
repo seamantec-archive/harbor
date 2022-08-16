@@ -1,0 +1,7 @@
+=render partial: "orders/payment_steps", locals:{active:"first"}
+.row.store-row
+  .col-xs-12.col-md-10.col-md-offset-1
+    -#%h1 Place order
+  .col-xs-12.col-md-10.col-md-offset-1
+    = form_for @order, url: order_path(@order.id), html: {class:"form-horizontal", id: "edit_order", method: :patch} do |f|
+      = render partial: "orders/order_form", locals: {f:f}

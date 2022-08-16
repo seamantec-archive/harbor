@@ -1,0 +1,11 @@
+.form-group
+  = f.label :name, class: "control-label"
+  = f.text_field :name, class: "form-control"
+.form-group
+  = f.label :description, class: "control-label"
+  = f.text_area :description, class: "form-control", rows: "8"
+.form-group
+  .checkbox
+    %label
+      = f.check_box :default_cat,{}, "true", "false"
+      Default category

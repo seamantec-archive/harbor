@@ -1,0 +1,59 @@
+#footer
+  %hr
+
+  -#.container
+  -#  .row.footer-menu
+  -#    .col-xs-3.col-md-1.col-md-offset-4
+  -#      = link_to "Home", root_path
+  -#    .col-xs-3.col-md-1.text-center
+  -#      = link_to "Downloads", download_path
+  -#    .col-xs-3.col-md-1.text-center
+  -#      = link_to "FAQ", public_faq_path
+  -#    .col-xs-3.col-md-1.text-center
+  -#      = link_to "About", about_path
+  -#  .row.terms
+  -#    .col-xs-4.col-md-2.col-md-offset-3.text-center
+  -#      = link_to "Terms and conditions", terms_path
+  -#    .col-xs-4.col-md-2.text-center
+  -#      = link_to "Data Protection Policy", data_protection_path
+  -#    .col-xs-4.col-md-2.text-center
+  -#      = link_to "Contact", about_path
+  .container
+    .row
+      .col-md-2.col-md-offset-2.col-sm-2.col-sm-offset-2.col-xs-4.col-xs-offset-2
+        %h3 Quick links
+        %ul.list-unstyled
+          %li
+            = link_to "Home", root_path
+          %li
+            = link_to "Downloads", download_path
+          %li
+            = link_to "FAQ", public_faq_path
+          %li
+            = link_to "About", about_path
+      .col-md-3.col-sm-3.col-xs-4
+        %h3 Legal documents
+        %ul.list-unstyled
+          %li
+            = link_to "Terms and conditions", terms_path
+          %li
+            = link_to "Data Protection Policy", data_protection_path
+
+      .col-md-3.col-sm-3.col-xs-12
+        %h3 Follow us
+        .row
+          .col-md-4.col-sm-4.col-xs-2
+            = link_to image_tag(image_path("social/facebook.png"), class:"img-responsive"), "https://facebook.com/seamantec", target:"_blank"
+          .col-md-4.col-sm-4.col-xs-2
+            = link_to image_tag(image_path("social/google+.png"), class:"img-responsive"), "https://plus.google.com/110672708295089398106/", target:"_blank"
+          .col-md-4.col-sm-4.col-xs-2
+            = link_to image_tag(image_path("social/youtube.png"), class:"img-responsive"), "https://www.youtube.com/channel/UC6NzmE1ZXi6WCpDvGXOa7xg", target:"_blank"
+
+  .container
+    .row
+      .col-xs-12.text-center
+        Copyright Seamantec Kft. All rights reserved 2015
+    .row
+      .col-xs-12.text-center.small.text-muted
+        -#All our prices are in USD
+

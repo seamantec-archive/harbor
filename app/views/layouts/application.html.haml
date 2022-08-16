@@ -1,0 +1,20 @@
+!!!
+%html{:lang=>"en"}
+  = render :partial => 'layouts/html_header'
+
+  %body
+    =render :partial => "layouts/nav_bar", locals: {fixed:true}
+    #main-container.container
+      .row.content
+        -if user_signed_in?
+          =render :partial => "layouts/left_menu"
+          .col-xs-12.col-sm-10.col-md-10
+            = render "layouts/messages"
+            = yield
+        -else
+          .col-xs-12
+            =render "layouts/messages"
+            = yield
+    = render :partial => 'layouts/footer'
+
+  = render :partial => 'layouts/analytics_script'

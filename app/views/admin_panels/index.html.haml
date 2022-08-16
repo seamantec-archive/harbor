@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h3 Admin Panel
+.row
+  .col-md-12
+    = form_for @admin_panel, url:admin_panel_path(@admin_panel), html:{class:"form-horizontal", id: "edit_order", method: :patch} do |f|
+      .form-group.row
+        .col-md-8.col-md-offset-3
+          .checkbox
+            %label
+              = f.check_box :store_enabled,{}, "true", "false"
+              Enable store
+      .form-group.row
+        .col-md-8.col-md-offset-3
+          .checkbox
+            %label
+              = f.check_box :paypal_enabled,{}, "true", "false"
+              Enable Paypal
+      .form-group
+        .col-md-8.col-md-offset-3
+          = f.submit "Save", class:"btn btn-primary btn-sm"
+.row
+  .col-md-12
+    %h3 Quick tasks
+.row
+  .col-md-12
+    = link_to "Activate anonym customers", activate_anonym_customers_admin_panels_path, class: "btn btn-primary btn-sm"

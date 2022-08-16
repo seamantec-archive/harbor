@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    = form_for(@testimonial) do |f|
+      .form-group.col-md-12
+        = f.label :from, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :from, :class=>"form-control col-md-2"
+      .form-group.col-md-12
+        = f.label :full_text, :class=>"col-md-2 control-label"
+        .col-md-8
+          = f.text_area :full_text, :class=>"form-control col-md-2"
+      .form-group.col-md-12
+        = f.label :quote, :class=>"col-md-2 control-label"
+        .col-md-8
+          = f.text_area :quote, :class=>"form-control col-md-2"
+
+      .form-group.col-md-12
+        = f.label :image_path, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :image_path, :class=>"form-control col-md-2"
+
+      .form-group.col-md-12
+        = f.label :link, :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :link, :class=>"form-control col-md-2"
+      %div= f.submit "Save", class:"btn btn-default"

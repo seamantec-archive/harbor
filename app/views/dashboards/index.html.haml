@@ -1,0 +1,76 @@
+.row
+  .col-md-12
+    .row
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            All Users
+            %span.users_counter
+          .panel-body
+            %canvas#allUsersChart
+            .row
+              #allUsersChartLegend
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            Licenses
+            %span.licenses_counter
+          .panel-body
+            %canvas#licensesChart
+            .row
+              #allLicensesChartLegend
+    .row
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            Orders
+            %span.orders_counter
+          .panel-body
+            %canvas#ordersChart
+            .row
+              #allOrdersChartLegend
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            Payments
+          .panel-body
+            #all_payments
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Payments Last 30 days
+          .panel-body
+            %canvas#lastPaymentsChart{height:400}
+            .row
+              #lastPaymentsChartLegend
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            -#TODO switch between montly, yearly
+            Users Last 30 days
+          .panel-body
+            %canvas#lastUsersChart{height:400}
+            .row
+              #lastUsersChartLegend
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Licenses Last 30 days
+          .panel-body
+            %canvas#lastLicensesChart{height:400}
+            .row
+              #lastLicensesChartLegend
+
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Orders Last 30 days
+          .panel-body
+            %canvas#lastOrdersChart{height:400}
+            .row
+              #lastOrderChartLegend
+

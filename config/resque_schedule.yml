@@ -1,0 +1,32 @@
+#test_start:
+##  cron: "/5 * * * *"
+#  every:
+#    - "1s"
+#  # you can use rufus-scheduler "every" syntax in place of cron if you prefer
+#  # every: 1hr
+#  # By default the job name (hash key) will be taken as worker class name.
+#  # If you want to have a different job name and class name, provide the 'class' option
+#  class: TestWorker
+##  queue: rspec_test_queue
+#  description: "This job start test"
+
+#ExchangeWorker:
+#  cron: "0 7,10,12,16,20 * * *"
+##  every:
+##    - "20s"
+##  class: ExchangeWorker
+#  queue: utils
+#  description: "Load exchange rates from MNB"
+
+ReportWorker:
+  cron: "1 * * * *"
+#  every:
+#    - "20s"
+#  class: ExchangeWorker
+  queue: utils
+  description: "Create reports"
+
+TempFileWorker:
+  every:
+    - "10m"
+

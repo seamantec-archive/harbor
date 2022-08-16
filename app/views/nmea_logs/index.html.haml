@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Recorded at
+          %th
+          -#%th
+          %th
+      %tbody
+        = render partial: "nmea_log", collection: @nmea_logs
+
+- if current_user.is_admin?
+  = link_to "Process log files (#{@log_files.size})", process_logs_user_nmea_logs_path

@@ -1,0 +1,58 @@
+.row
+  .col-md-3.text-center
+    %b created at
+  .col-md-3.text-center
+    %b updated at
+  .col-md-3.text-center
+    %b status
+  .col-md-3.text-center
+    %b email sent
+.row
+  .col-md-3.text-center
+    = @invoice.created_at.to_s
+  .col-md-3.text-center
+    =@invoice.updated_at.to_s
+  .col-md-3.text-center
+    =@invoice.status
+  .col-md-3.text-center
+    =@invoice.mail_sent
+
+%br
+  %hr
+.row
+  .col-md-2
+    -if @invoice.invoice_number.present?
+      = link_to "Save as Pdf", save_as_pdf_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice), class: "btn btn-sm btn-success"
+    - else
+      = link_to "Finalize", finalize_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice), class: "btn btn-sm btn-success"
+  .col-md-2
+    = link_to "Open raw", open_raw_invoice_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice), class: "btn btn-sm btn-success", target: "_blank"
+
+  .col-md-2
+    = link_to "Resend", resend_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice), class: "btn btn-sm btn-success"
+
+  - if @invoice.has_storno?
+    .col-md-2
+      = link_to "Save Storno as pdf", save_as_pdf_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice.mod_invoice), class: "btn btn-sm btn-success"
+
+  -else
+    .col-md-2
+      = link_to "Storno", storno_invoice_array_invoice_path(invoice_array_id: @invoice_array,id: @invoice), class: "btn btn-sm btn-success"
+
+
+%hr
+%br
+
+.row
+  .col-md-12
+    - if @invoice.is_order_invoice
+      = render partial: "invoices/invoice_print", locals:{invoice: @invoice}
+    - else
+      = render partial: "invoices/invoice_print_manual", locals:{invoice: @invoice}
+- if @invoice.has_storno?
+  .row
+    .col-md-12
+      -if@invoice.mod_invoice.is_order_invoice
+        = render partial: "invoices/invoice_print", locals:{invoice: @invoice.mod_invoice}
+      - else
+        = render partial: "invoices/invoice_print_manual", locals:{invoice: @invoice.mod_invoice}

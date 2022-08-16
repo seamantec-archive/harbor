@@ -1,0 +1,22 @@
+.row
+  .col-md-4
+    %h3 Invoice Arrays
+.row
+  .col-md-4
+    = link_to "Create invoice array", new_invoice_array_path, class:"btn btn-sm btn-default"
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Prefix
+          %th Number Of Invoices
+          %th #
+          %th #
+          %th #
+      %tbody
+        = render partial: "invoice_arrays/invoice_array", collection: @invoice_arrays
+.row
+  .col-md-12
+    = paginate @invoice_arrays,:theme => 'twitter-bootstrap-3'

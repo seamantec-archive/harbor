@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    %h3
+      = "Create new license pool for #{@user.email}"
+
+.row
+  -@license_pool.errors.full_messages.each do |msg|
+    %li.alert.alert-danger
+      =msg
+.row
+  .col-md-12
+    = form_for(@license_pool, url:user_license_pools_path(user_id: @user.id), html:{:class=>"form-horizontal"}) do |f|
+      .form-group
+        = f.label :name , :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :name, :autofocus => true, :class=>"form-control"
+      .form-group
+        = f.label :license_template_id , :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.collection_select :license_template_id, LicenseTemplate.all, :id, :name, {},{:class=>"form-control"}
+      .form-group
+        = f.label :max_lic,"Max license", :class=>"col-md-2 control-label"
+        .col-md-4
+          = f.text_field :max_lic, :class=>"form-control"
+      %div= f.submit "Save", class:"btn btn-default"

@@ -1,0 +1,170 @@
+
+-#.row
+-#  #edo-logo.col-xs-4
+-#    = wicked_pdf_image_tag("seamantec_logo_200.png", style:"width:150px;")
+.row
+  .col-xs-4
+    %h1
+      INVOICE
+  - if !Rails.env.production? || CONFIGS[:braintree]["environment"] == "sandbox"
+    .col-xs-4
+      %h1
+        (SAMPLE/MINTA)
+.row
+  .col-xs-12
+    %h3
+      = "Invoice number: #{invoice.full_number}"
+    - if invoice.is_storno?
+      %h4
+        = "Original invoice number: #{invoice.original_invoice.full_number}"
+.row.invoice-companies
+  .col-xs-6
+    %h3
+      Vendor
+    %h4
+      Seamantec Kft.
+    .row
+      .col-xs-10.col-xs-offset-1
+        .row
+          .col-xs-12
+            Budakeszi
+        .row
+          .col-xs-12
+            Szőlőskert utca 5
+        .row
+          .col-xs-12
+            Hungary
+        .row
+          .col-xs-12
+            2092
+        .row
+          .col-xs-12
+            VAT ID: HU24364120
+
+  .col-xs-6
+    %h3
+      Customer
+    %h4
+      = invoice.order.user.full_name
+    -if invoice.order.user.company_info.name.present?
+      %h4
+        = invoice.order.user.company_info.name
+    .row
+      .col-xs-10.col-xs-offset-1
+        .row
+          .col-xs-12
+            = invoice.order.user.billing_address.city
+        .row
+          .col-xs-12
+            = invoice.order.user.billing_address.address
+        .row
+          .col-xs-12
+            = invoice.order.user.billing_address.address_2
+        .row
+          .col-xs-12
+            = invoice.order.user.billing_address.country.name
+        .row
+          .col-xs-12
+            = invoice.order.user.billing_address.zip_code
+        .row
+          .col-xs-12
+            = "VAT ID: #{invoice.order.user.company_info.vat_id}"
+
+%hr
+
+.row
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th.col-md-3.text-center
+          Payment method
+        %th.col-md-3.text-center
+          Date of Invoice
+        %th.col-md-3.text-center
+          Date of fulfilment
+        %th.col-md-3.text-center
+          Due
+    %tbody
+      %tr
+        %td.col-md-3.text-center
+          Bankcard
+        %td.col-md-3.text-center
+          = invoice.created_at.strftime("%Y-%m-%d")
+        %td.col-md-3.text-center
+          = invoice.order.payment.updated_at.strftime("%Y-%m-%d")
+        %td.col-md-3.text-center
+          = invoice.order.payment.updated_at.strftime("%Y-%m-%d")
+.row
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th.col-md-4.text-center
+          Description
+        %th.col-md-1.text-center
+          Amount
+        %th.col-md-1.text-center
+          Unit Price
+        %th.col-md-1.text-center
+          Net. Price
+        %th.col-md-1.text-center
+          VAT Rate
+        %th.col-md-1.text-center
+          VAT
+        %th.col-md-1.text-center
+          Gross Price
+    %tbody
+      %tr
+        %td.col-md-4.text-center
+          = invoice.order.product_item.name
+        %td.col-md-1.text-center
+          = invoice.order.number_of_items*(invoice.is_storno? ? -1 : 1)
+        %td.col-md-1.text-center
+          = invoice.order.product_item.net_price_with_long_currency(invoice.is_storno?)
+        %td.col-md-1.text-center
+          = invoice.order.payment.net_value_with_long_currency(invoice.is_storno?)
+        %td.col-md-1.text-center
+          = "#{invoice.order.payment.vat_percent}%"
+        %td.col-md-1.text-center
+          = invoice.order.payment.vat_value_with_long_currency(invoice.is_storno?)
+        %td.col-md-1.text-center
+          = invoice.order.payment.total_with_long_currency(invoice.is_storno?)
+%br
+%br
+%br
+%hr
+  .row
+    .col-xs-6
+      .row
+        %br
+      .row
+        .col-xs-4.text-center
+          VAT Rate
+        .col-xs-4.text-center
+          ="VAT in #{invoice.order.payment.currency}"
+        .col-xs-4.text-center
+          ="VAT in HUF"
+      %hr
+      .row
+        .col-xs-4.text-center
+          = "#{invoice.order.payment.vat_percent}%"
+        .col-xs-4.text-center
+          = invoice.order.payment.vat_value_with_long_currency(invoice.is_storno?)
+        .col-xs-4.text-center
+          = "#{invoice.order.payment.vat_value_in_huf*(invoice.is_storno? ? -1 : 1)} HUF"
+    .col-xs-6
+      .row
+        .col-xs-8
+          Net. Total:
+        .col-xs-4
+          = invoice.order.payment.net_value_with_long_currency(invoice.is_storno?)
+      .row
+        .col-xs-8
+          VAT Total:
+        .col-xs-4
+          = invoice.order.payment.vat_value_with_long_currency(invoice.is_storno?)
+      %hr
+        .row
+          .col-xs-8
+            %b Total:
+          .col-xs-4
+            %b= invoice.order.payment.total_with_long_currency(invoice.is_storno?)

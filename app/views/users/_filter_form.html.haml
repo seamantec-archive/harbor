@@ -1,0 +1,10 @@
+.col-md-1
+  Filter:
+
+.col-md-7
+  = form_for(:search, url:filter_path_var, method: "get", html:{class: "form-horizontal"}) do |f|
+    .form-group.col-md-5
+      = f.text_field :email, :autofocus => true, :class=>"form-control", value: @search_text.nil? ? "" : @search_text[:email]
+    .form-group.col-md-5= f.submit "Filter", class:"btn btn-default"
+
+

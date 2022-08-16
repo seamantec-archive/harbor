@@ -1,0 +1,40 @@
+.row.download
+  .col-md-6.col-xs-12
+    %h2
+      = image_tag("edo_logo_single.png", class: "download-ico")
+      Download EDO Instruments
+      .small
+        %i="for Windows"
+    %br
+    .download-btn-version.row
+      .col-md-7.col-xs-12
+        = link_to "Download for Windows", download_win_path, :class=>"btn btn-primary btn-lg"
+      .col-md-5.col-xs-12
+        %span.small.text-muted.version-info
+          %i= "#{@release_win.version_number} for Windows"
+
+
+
+  .col-md-6.col-xs-12
+    %h2
+      = image_tag("edo_logo_single.png", class: "download-ico")
+      Download EDO Instruments
+      .small
+        %i for Mac
+    %br
+    .download-btn-version.row
+      .col-md-6.col-xs-12
+        = link_to "Download for Mac", download_mac_path, :class=>"btn btn-primary btn-lg"
+      .col-md-5.col-xs-12
+        %span.small.text-muted.version-info
+          %i= "#{@release_mac.version_number} for mac"
+
+
+%br
+%br
+%br
+.row.download
+  .col-md-12.text-center
+    = link_to "Do you have any question? <i>Contact us</i>".html_safe, "mailto:info@seamantec.com"
+%br
+%br

@@ -1,0 +1,8 @@
+.row
+  %ul.list-unstyled.col-md-8.col-md-offset-1
+    -model.errors.messages.each do |key|
+      %li.alert.alert-danger
+        %p.small
+          %label{for:"#{model_name}_#{key[0].to_s}"}
+            - model.errors[key[0]].each do |msg|
+              =model.errors.full_message(key[0], msg)

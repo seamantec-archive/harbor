@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default.navbar-static-top.navbar-custom-static{ :role => "navigation", id: "navbar" }
+  .container-fluid
+    = render :partial => "layouts/brand_navbar_header"
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if AdminPanel.is_store_enabled?
+          %li{ class: "buy-now-li #{current_page?(new_order_path) ? "active" : ""}" }
+            = link_to "Buy now <span class='now-price'>$99.00</span>".html_safe, buy_it_now_orders_path, class: "buy-now-btn"
+        -#%li{ class: "#{current_page?(root_path) ? "active" : ""}" }
+        -#  %a{href: root_path, class: ""} Home
+        -#%li{ class: "#{(current_page?(download_mac_path) || current_page?(download_win_path)) ? "active" : ""}" }
+        -#  = link_to "Downloads", download_path, class: ""
+        %li{ class: "try-now-li #{(current_page?(new_public_trial_licenses_path)) ? "active" : ""}" }
+          = link_to "Try for free", new_public_trial_licenses_path, class: "buy-now-btn"
+        %li{ class: "#{current_page?("/faq") ? "active" : ""}" }
+          = link_to "FAQ", public_faq_path, class: ""
+        %li
+          = link_to "Discuss here", "http://www.cruisersforum.com/forums/f141/edo-virtual-instruments-for-sailors-146981.html", class: "", target: "_blank"
+        -#%li{ class: "#{current_page?(about_path) ? "active" : ""}" }
+        -#  = link_to "About", about_path, class: ""
+
+
+        - if user_signed_in?
+          %li
+            = link_to current_user.email, edit_user_path(current_user), class: ""
+          %li
+            = link_to( "Log out", destroy_user_session_path, :method => :delete, class: "")
+        -else
+          %li
+            = link_to "Sign up", sign_up_path, class: ""
+          = render partial: "layouts/top_login"
+

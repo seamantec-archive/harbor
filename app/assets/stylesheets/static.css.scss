@@ -1,0 +1,23 @@
+// Place all the styles related to the static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.dropdown-menu-right {
+  padding: 18px;
+}
+
+#download {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: auto;
+  background-color: rgba(0,0,0, 0.6);
+  z-index: 15;
+}
+
+#download a {
+  margin: 5%;
+}

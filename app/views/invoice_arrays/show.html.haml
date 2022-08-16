@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    %h3
+      ="Invoice Array: #{@invoice_array.name}"
+.row
+  .col-md-12
+    = link_to "New Invoice", new_invoice_array_invoice_path(invoice_array_id: @invoice_array.id), class:"btn btn-default"
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Invoice Number
+          %th Created at
+          %th Printed
+          %th Storno
+          %th #
+      %tbody
+        = render partial: "invoice_arrays/invoice", collection:@invoices
+.row
+  .col-md-12
+    = paginate @invoices,:theme => 'twitter-bootstrap-3'

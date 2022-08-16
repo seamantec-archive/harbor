@@ -1,0 +1,9 @@
+%tr
+  %td= link_to order.user.email, user_path(order.user) if order.user.present?
+  %td= order.payment.currency_symbol + ' ' + order.payment.net_value.to_s
+  %td= order.payment.currency_symbol + ' ' + order.payment.vat_value.to_s
+  %td= order.created_at.to_s(:db)
+  %td= order.payment.payment_method
+  %td
+    %span{class: "label #{order_status_label_class(order.payment.payment_status)}"}= order.payment.payment_status
+  %td= link_to "Show", order_path(id: order._id)

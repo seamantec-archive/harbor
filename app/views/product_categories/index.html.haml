@@ -1,0 +1,29 @@
+.row
+  .col-xs-12
+    = link_to "Create product category", new_product_category_path, class: "btn btn-default"
+  #product-categories.col-xs-12
+    - @categories.each do |category|
+      .col-xs-12.panel.panel-default.col-sm-offset-1
+        .col-xs-6.col-sm-7
+        .text-right.col-xs-2.col-sm-2.product-category-edit
+          = link_to "Edit", edit_product_category_path(id: category._id)
+        .text-right.col-xs-4.col-sm-3
+          = link_to "Delete", product_category_path(id: category._id), method: :delete, data: { confirm: "Are you sure to delete?" }
+        %h3
+          = "#{category.name} #{category.default_cat ? "(Default)" : ""}"
+        %p.top-buffer
+          = @markdown.render(category.description).html_safe
+        %p
+          = link_to "Create product item", new_item_product_categories_path(category_id: category._id), class: "btn btn-default"
+          - category.product_items.each do |item|
+            .row.proudct-item-section
+              .col-xs-7
+                %b= item.name
+              .col-xs-2.text-right
+                %b= "#{item.currency_symbol} #{item.net_price}"
+              .col-xs-1.text-right
+                %b= item.default_item ? "Def." : ""
+              .col-xs-1
+                = link_to "Edit", edit_item_product_categories_path(id: item._id, category_id: category._id)
+              .col-xs-1
+                = link_to "Delete", destroy_item_product_categories_path(id: item._id, category_id: category._id), method: :delete, data: { confirm: "Are you sure to delete?" }

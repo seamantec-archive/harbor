@@ -1,0 +1,10 @@
+-if can? :list, User
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h5 Users
+      .panel-body
+        %ul.list-group
+          -@users.each do |user|
+            %li.list-group-item.no-overflow
+              = link_to user.email, user_path(user), class: "btn #{selected_email == user.email ? "disabled" : ""}"

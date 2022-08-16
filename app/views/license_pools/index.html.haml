@@ -1,0 +1,19 @@
+- if can? :create, LicensePool
+  .row
+    .col-md-12
+      = link_to "Create license pool", new_user_license_pool_path(user_id: @user.id), class: "btn btn-default"
+
+
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Max license
+          %th Used licenses
+
+      %tbody
+        = render partial: "license_pools/license_pool", collection: @license_pools

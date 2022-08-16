@@ -1,0 +1,29 @@
+
+.row
+  -@license.errors.full_messages.each do |msg|
+    %li.alert.alert-danger
+      =msg
+.row
+  .col-md-4.text-right
+    %h3
+      Download license
+
+  .col-md-12
+    = form_for(:get_license, url:download_license_path, html:{:class=>"form-horizontal"}) do |f|
+      .form-group
+        = f.label :email, class: "col-md-2 control-label"
+        .col-md-4
+          = f.email_field :email, :autofocus => true, :class=>"form-control" #, value: @user.email
+      .form-group
+        = f.label :serial, class: "col-md-2 control-label"
+        .col-md-4
+          = f.text_field :serial, :class=>"form-control" #, value: @license.expire_at
+
+      .form-group
+        = f.label :activation_key, class: "col-md-2 control-label"
+        .col-md-4
+          = f.text_field :activation_key, :class=>"form-control" #, value: @license.expire_at
+
+      .form-group
+        .col-md-7.pull-right
+          = f.submit "Download", class:"btn btn-default"

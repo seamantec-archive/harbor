@@ -1,0 +1,6 @@
+.row
+  .col-xs-12.col-md-10.col-md-offset-1
+    %h1
+      Sign up
+%br
+= render partial: "users/form", locals:{url: create_sign_up_users_path, btn_label: "Sign up", with_password:true, method: :post}

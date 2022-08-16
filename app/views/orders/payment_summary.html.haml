@@ -1,0 +1,88 @@
+= content_for :header do
+  = javascript_include_tag "https://js.braintreegateway.com/v2/braintree.js"
+=render partial: "orders/payment_steps", locals:{active:"middle"}
+
+.row
+  .col-md-5
+    %h1 Payment summary
+  .col-md-7.vertical-1-125-em.text-right
+    = link_to "Edit", edit_order_path(@order), class:"btn btn-lg btn-primary"
+
+.row
+  .col-md-10.col-md-offset-1
+    %h3 Contact informations
+.row
+  .col-md-10.col-md-offset-2
+    .row
+      .col-md-2
+        %b Name
+      .col-md-4
+        = "#{@order.user.first_name } #{@order.user.last_name}"
+      .col-md-2
+        %b Email
+      .col-md-4
+        = @order.user.email
+    .row
+      .col-md-2
+        %b Company
+      .col-md-4
+        = @order.user.company_info.name
+      .col-md-2
+        %b VAT ID
+      .col-md-4
+        = @order.user.company_info.vat_id
+
+
+.row
+  .col-md-10.col-md-offset-1
+    %h3 Billing address
+  .row
+    .col-md-10.col-md-offset-2
+      .row
+        .col-md-4
+          = @order.user.billing_address.city
+      .row
+        .col-md-4
+          = @order.user.billing_address.address
+      .row
+        .col-md-4
+          = @order.user.billing_address.address_2
+      .row
+        .col-md-4
+          = @order.user.billing_address.country.name
+      .row
+        .col-md-4
+          = @order.user.billing_address.zip_code
+%hr
+  = render partial: "orders/payment_summary"
+.row
+  .col-md-10.col-md-offset-1
+    .well
+      .row
+        .col-md-2
+          %h3 Pay with
+        .col-md-3.vertical-0-75-em
+          .radio
+            %label.control-label
+              = radio_button_tag :payment_method, "paypal",@order.payment.payment_method == Payment::METHOD_PAYPAL,class:"payment-method-control"
+              %img{src: "https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif"}
+              = render :partial => 'orders/paypal_tooltip'
+        .col-md-7.vertical-0-75-em
+          .radio
+            %label.control-label
+              = radio_button_tag :payment_method, "braintree", @order.payment.payment_method == Payment::METHOD_BRAINTREE, class:"payment-method-control"
+              Credit card
+              = image_tag(image_path("cards.jpg"), style:"width:200px;")
+      - if Rails.env != "production"
+        %h4.alert.alert-danger THIS IS A TEST SERVER.
+      = form_for :credit_card,url: pay_with_braintree_order_payments_path(order_id: @order.id), html: {autocomplete:"off", id:"checkout"} do |f|
+        = hidden_field_tag("braintree-token", @client_token,{ id: "braintree-token"})
+        -#= hidden_field_tag("order_id",@order.id,{ id: "order_id"})
+        = render partial:  "payments/paypal_section"
+        = render partial: "payments/credit_card_section"
+      -#%hr
+      -#.row
+      -#  .col-md-12
+      -#    #paypal-button
+
+

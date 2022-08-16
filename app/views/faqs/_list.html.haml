@@ -1,0 +1,30 @@
+.row
+  .col-xs-12
+    .panel-group
+      - list.each do |topic|
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              %a{ href: "#collapse#{topic._id}", data: { toggle: "collapse", parent: "#faq-accordion" } }
+                .row
+                  .name.col-xs-6= topic.name
+                  .text-right.col-xs-3
+                    = link_to "Create question", new_question_faq_topics_path(topic_id: topic._id)
+                  .text-right.col-xs-1
+                    = link_to "Edit", faq_path(id: topic._id)
+                  .text-right.col-xs-2
+                    = link_to "Delete", faq_path(id: topic._id), method: :delete, data: { confirm: "Are you sure to delete?" }
+          .panel-collapse.collapse{ id: "collapse#{topic._id}", class: "#{(topic.list_position==1 ? "in" : "")}" }
+            .panel-body
+              %ul.list-unstyled
+                - topic.faq_questions.sort_by { |q| q[:list_position] }.each do |question|
+                  %li
+                    .row
+                      .col-xs-10
+                        %b= question.question
+                      .col-xs-1
+                        = link_to "Edit", show_question_faq_topics_path(topic_id: topic._id, id: question._id), class: "edit-question"
+                      .col-xs-1
+                        = link_to "Delete", destroy_question_faq_topics_path(topic_id: topic._id, id: question._id), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "destroy-question"
+                      .col-xs-12
+                        = @markdown.render(question.answer).html_safe

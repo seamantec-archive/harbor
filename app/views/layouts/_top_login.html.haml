@@ -1,0 +1,40 @@
+%li.dropdown
+  %a#sign_in_btn.dropdown-toggle{ :href => "#", :data => { :toggle => "dropdown" }, class: "" }
+    Log in
+    %span.caret
+  .dropdown-menu{role:"menu"}
+    .row
+      .col-md-10.col-md-offset-1
+        = form_for("user", :url => user_session_path, html: { :id => "navbar_singin", :class => "form"}) do |f|
+          .form-group
+            = f.label :email,:class=>"sr-only control-label"
+            = f.email_field :email, :autofocus => true, placeholder:"Email", :class=>"form-control"
+          .form-group
+            = f.password_field :password, placeholder:"Password", :class=>"form-control"
+          .checkbox
+            = f.check_box :remember_me
+            = f.label :remember_me
+          .form-group{style: "margin-bottom: 0;"}
+            = f.submit "Log in", class:"btn btn-top-navbar navbar-btn"
+    .row
+      .col-md-10.col-md-offset-1.small
+        = link_to "Forgot your password?", forget_password_path
+    -#.row
+    -#  .col-md-10.col-md-offset-1.small
+    -#    = link_to "Sign up", sign_up_path
+
+-#
+  = link_to("Sign in", "#", :class=>"btn btn-default navbar-btn navbar-right", id:"sign_in_btn")
+
+  = form_for("user", :url => user_session_path, html: {:class=>"navbar-form navbar-right", id:"navbar_singin", :role=>"signin"}) do |f|
+    .form-group
+      = f.label :email,:class=>"sr-only"
+      = f.email_field :email, :autofocus => true, placeholder:"Enter email"
+    .form-group
+      = f.label :password,:class=>"sr-only"
+      = f.password_field :password, placeholder:"Password"
+    .checkbox
+      = f.check_box :remember_me
+      = f.label :remember_me
+    .form-group= f.submit "Sign in", class:"btn btn-default"
+

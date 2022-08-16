@@ -1,0 +1,17 @@
+ses:
+  server_name: ""
+  port:  ""
+  smtp_user: ""
+  smtp_password: ""
+s3:
+  user: ""
+  access_key: ""
+license:
+  pkey:
+  pub:
+braintree:
+  environment: "sandbox"
+  merchant_id: ""
+  public_key: ""
+  private_key: ""
+paypal_type: "standard" #braintree

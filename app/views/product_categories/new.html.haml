@@ -1,0 +1,6 @@
+.row
+  .col-xs-12
+    = render :partial => 'product_categories/category_errors'
+    = form_for(@category, url: product_categories_path) do |f|
+      = render partial: "category_form", locals: {f:f}
+      = f.submit "Save", class: "btn btn-default"

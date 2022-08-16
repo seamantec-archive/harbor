@@ -1,0 +1,545 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *
+ */
+//= require magnific-popup
+//------------------------------
+// OVERRODE VARIABLES
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100);
+//@import url(http://fonts.googleapis.com/css?family=Rambla);
+@import "bootstrap";
+@import "bootstrap_custom/harbor_variables";
+@import "bootstrap_custom/mixins";
+@import "bootstrap_custom/alerts";
+@import "faqs";
+@import "orders";
+
+//
+html {
+  //  position: relative;
+  //  min-height: 100%;
+  //  margin: 0;
+  //  padding: 0;
+}
+
+body {
+  height: 100%;
+  font-family: $font-family-sans-serif;
+  background-color: $body-bg;
+  //  font-weight: 100;
+  font-size: 16px;
+  //  margin: 0;
+  //  padding: 0;
+  //  padding-left:40px;
+  //  padding-right: 40px;
+}
+
+.navbar {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#main-container {
+  padding-top: 30px;
+}
+
+//.content {
+//  background-color: $content-color;
+//  padding: 15px 10px;
+//  height: 100%;
+//  min-height: 100%;
+//}
+
+.nav > li {
+  font-size: 1.1em;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.brand {
+  padding: 5px 20px 0px 5px;
+  margin-top: 7px;
+}
+
+.img-brand {
+  width: 166px;
+}
+
+form .clearfix:before, form .clearfix:after {
+  display: inline;
+}
+
+.no-overflow {
+  overflow: hidden;
+  padding-left: 0;
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+.center-y {
+  vertical-align: middle;
+}
+
+.top-pad-5 {
+  padding-top: 5px;
+}
+
+hr.payment-total {
+  border: 0;
+  height: 2px;
+  background: #000000;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+hr.feature {
+  border: 0;
+  height: 1px;
+  background: #dadada;
+  margin: 0;
+}
+
+.drop-shadow {
+  -webkit-box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.main-content {
+  margin-top: 0px;
+}
+
+.min-height-zero {
+  min-height: 0px;
+}
+
+p.welcome-text {
+  font-size: 30px;
+  padding-top: 40px
+}
+
+#image-slider {
+  height: 210px;
+  overflow: hidden;
+}
+
+.thin {
+  font-weight: 100;
+}
+
+.feature-odd {
+  background-color: $feature-odds-color;
+  padding-top: 12.5px;
+  padding-bottom: 22.5px;
+  font-size: 1.2em;
+}
+
+.feature-even {
+  background-color: $feature-even-color;
+  padding-top: 12.5px;
+  padding-bottom: 22.5px;
+  font-size: 1.2em;
+}
+
+.features {
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+.feature-description {
+  color: $feature-description-font-color;
+  /*font-size: 1.3em;*/
+}
+
+//#edo-logo {
+//  width: 100px;
+////  position: absolute;
+////  float: left;
+////  z-index: 1000;
+////  margin-top: -77px;
+////  margin-left: -10px;
+//}
+
+#footer {
+  background-color: #fff;
+  height: $footer-height;
+  width: 100%;
+  padding-top: 10px;
+  position: relative;
+  bottom: 0;
+  color: #2e2e2e;
+  font-size: 0.75em;
+
+  .footer-menu {
+    font-size: 1.1em;
+  }
+  .terms {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    a {
+      color: #000;
+      &:hover {
+        color: #575757;
+      }
+    }
+  }
+
+}
+
+#multiplatform {
+  @include box-shadow(inset 0 0 6px rgba(0, 0, 0, 0.3));
+  //  background-image: asset-url("multiplatform.png");
+  //  background-repeat: repeat-x;
+  @include gradient-vertical(#d1d2c8, #acacab);
+  width: 100%;
+  h1 {
+    color: #535353;
+    font-weight: 200;
+  }
+  .devices {
+    img {
+      margin: 0 auto;
+    }
+  }
+  //  height: 480px;
+}
+
+.top-info {
+  background-color: $header-color;
+  //padding-top: 30px;
+  padding-bottom: 10px;
+  position: relative;
+  top: 0;
+  //  background-image: url(../assets/blur.png);
+  //  min-height: 400px;
+}
+
+#top {
+  background-color: $header-color;
+  height: $header-height; //TODO mediaset
+  padding: 0;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+
+}
+
+#wired_video {
+  position: relative;
+  margin: 0 auto;
+  top: - 53px;
+  width: 100%;
+  .wired_container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1330px;
+    background-image: asset-url("wired_back.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 360px;
+  }
+
+  img {
+    margin-top: -104px;
+  }
+  @media(max-width: 320px) {
+    top: -30px;
+  }
+
+  .play_icon {
+    position: relative;
+    z-index: 100;
+    color: #fff;
+    font-size: 100px;
+    text-align: center;
+    width: 100px;
+    top: 60px;
+    //    left: 615px;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+  .play-btn {
+    margin: 0 auto;
+    width: 100px;
+  }
+}
+
+.logo {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.img-logo {
+  width: 120px;
+  //  display: block;
+  //  margin-left: auto;
+  //  margin-right: auto;
+  //  position:relative;
+}
+
+.os-info {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 100;
+  //  padding-top: 2px;
+  //  padding-bottom: 2px;
+  //  position:relative;
+  //  top: 21px;
+  margin-top: 52px;
+  margin-left: -34px;
+}
+
+@media(max-width: 320px) {
+  .os-info {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+
+  }
+}
+
+@media (min-width: 480px) {
+  .os-info {
+    margin-left: -50px;
+  }
+}
+
+@media (min-width: 600px) {
+  .os-info {
+    margin-left: -70px;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .os-info {
+    margin-left: -94px;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .os-info {
+    margin-top: 53px;
+    margin-left: -50px;
+  }
+}
+
+.static_messages {
+  min-height: 40px;
+  //  .row{
+  //    margin:0;
+  //  }
+
+}
+
+.main-quote {
+  /*
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.3);
+  */
+  color: #fff;
+  font-size: 1.875em;
+  padding-bottom: 10px;
+  font-weight: 100;
+}
+
+.detail-quote {
+  color: #d9edf0;
+  letter-spacing: 2px;
+  font-size: 1em;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $h-texts-color;
+}
+
+h1, .h1 {
+  font-size: 2.25em;
+}
+
+h2, .h2 {
+
+  font-size: 1.875em;
+}
+
+h3, .h3 {
+
+  font-size: 1.5em;
+}
+
+h4, .h4 {
+
+  font-size: 1.125em;
+}
+
+h5, .h5 {
+
+  font-size: 0.875em;
+}
+
+h6, .h6 {
+
+  font-size: 12px;
+}
+
+.customizable-interface h3,
+.tactical-tools h3,
+.tactical-tools ul {
+  text-align: right;
+}
+
+.img-right {
+  float: right;
+  margin: 1em;
+}
+
+.btn-top-navbar {
+  @include button-top-variant($btn-top-color, $btn-top-bg, $btn-top-border);
+  margin-right: 10px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  margin-top: 5px;
+  @include border-top-radius(5px);
+}
+
+.btn-xxlg {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($padding-extra-large-vertical, $padding-extra-large-horizontal, $font-size-extra-large, $line-height-extra-large, $border-radius-extra-large);
+}
+
+.btn-xxs {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size(1, 1, 10px, 0.3, 3px);
+}
+
+@media(max-width: 991px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 767px) {
+  body {
+    font-size: 12px;
+  }
+
+  .store-row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .new-order-row {
+    margin-right: 0;
+  }
+
+  .customizable-interface h3,
+  .tactical-tools h3,
+  .tactical-tools ul {
+    text-align: left;
+  }
+}
+
+.cookie-notification-white {
+  .cookie-notification-panel {
+    background: none;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    .panel-body {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.cookie-notification-blue {
+  .cookie-notification-panel {
+    background: none;
+    color: #000;
+    border-color: $header-color;
+    font-size: 11px;
+    .panel-body {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.download {
+  h2 {
+    .download-ico {
+      float: left;
+      margin-right: 10px;
+    }
+    .small {
+      color: $h-texts-color;
+      font-weight: 100;
+      //      float: left;
+    }
+  }
+  .version-info {
+    position: relative;
+    top: 10px;
+    color: #4c4c4c;
+    font-weight: 100;
+  }
+  .other-os {
+    a {
+      color: #16abdf;
+    }
+  }
+
+  .trial-panel {
+    margin-top: 15px;
+  }
+  .download-btn-version {
+    padding-left: 68px;
+  }
+
+}
+
+.install-img {
+  min-height: 182px;
+
+}
+
+.field_with_errors input[type='checkbox'] {
+  outline: 1px solid #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.intro {
+  font-weight: 300;
+  font-size: 1.35em;
+  color: #4a4a4a;
+  line-height: 1.9;
+
+}
+
+.valami {
+  height: 1500px;
+  width: 800px;
+  background-color: #16abdf;
+}
+
+.page-break { display:block; clear:both; page-break-after:always; }

@@ -1,0 +1,17 @@
+.col-md-12
+  = form_for(:coupon_group, url:coupons_path, html:{:class=>"form-horizontal"}) do |f|
+    .form-group
+      = f.label :name, class: "col-md-4 control-label"
+      .col-md-4
+        = f.text_field :name, :autofocus => true, :class=>"form-control"
+    .form-group
+      = f.label :group_id, class: "col-md-4 control-label"
+      .col-md-4
+        = f.text_field :group_id,  :class=>"form-control"
+    .form-group
+      = f.label :number_of_coupons, class: "col-md-4 control-label"
+      .col-md-4
+        = f.text_field :number_of_coupons, :class=>"form-control"
+    .col-md-8
+      .pull-right
+        = f.submit "Register", class:"btn btn-default"

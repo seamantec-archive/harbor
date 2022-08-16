@@ -1,0 +1,5 @@
+-@topic.errors.messages.each do |key|
+  %li.alert.alert-danger
+    %label{for:"topic_#{key[0].to_s}"}
+      - @topic.errors[key[0]].each do |msg|
+        =@topic.errors.full_message(key[0], msg)

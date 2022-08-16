@@ -1,0 +1,7 @@
+%tr
+  %td= polar_counter+1
+  %td= polar.name
+  %td= polar.created_at.to_formatted_s(:short)
+  -#%td= link_to "Send to devices", send_to_device_user_polar_path(user_id: polar.user.id, id: polar.id)
+  %td= link_to "Download",  download_user_polar_path(user_id: polar.user.id, id: polar.id)
+  %td= link_to "Delete", user_polar_path(user_id: polar.user.id, id: polar.id), method: :delete, data: { confirm: "Are you sure?"}

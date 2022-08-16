@@ -1,0 +1,13 @@
+-unless has_accepted_cookie_notification?
+  .row.cookie-notification{class: "#{main_page ? "cookie-notification-white" : "cookie-notification-blue"}"}
+    %div{class: "#{main_page ? "col-xs-12 col-md-10 col-md-offset-1" : " col-xs-12"}"}
+      .panel.panel-default.cookie-notification-panel
+        .panel-body
+          .row
+            .col-xs-12.col-md-10{style:"padding-top: 2px;"}
+              %b Cookie Notice
+              We use cookies to understand how our site is used. By continuing to use our website(s), you accept our use of cookies.
+              = link_to "Find out more", data_protection_path
+            .col-xs-1.col-md-2.text-right
+              = link_to "OK, Got it!", "#", class: "btn btn-success btn-xxs", id: "accept-cookie"
+

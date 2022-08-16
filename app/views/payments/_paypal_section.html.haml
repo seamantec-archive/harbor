@@ -1,0 +1,36 @@
+.row.paypal_section
+  -if CONFIGS[:paypal_type] == "standard"
+    .col-md-10.top-pad-5
+      - if AdminPanel.is_paypal_enabled?
+        = link_to image_tag("https://checkout.paypal.com/pwpp/1.1.3/images/pay-with-paypal.png", style:"max-width: 100%; display: block; width: 100%; height: 100%; outline: none; border: 0px;"),  set_express_checkout_order_paypal_payments_path(order_id: @order),style:"display: block; width: 115px; height: 44px; overflow: hidden;"
+      -else
+        Paypal is currently unavailable
+  -elsif CONFIGS[:paypal_type] == "braintree"
+    = content_for :script do
+      :ruby
+        code = <<-CODE
+         var paypalOptions = {
+                     container: "paypal-button",
+                     paymentMethodNonceInputField: "paypal-nonce",
+                     onSuccess: function (e) {
+                         $("#pay-with-paypal-btn").show();
+                     },
+                     onCancelled: function (e) {
+                         $("#pay-with-paypal-btn").hide();
+                     }
+                   }
+          braintree.paypal.create($("#braintree-token").val(), paypalOptions);
+        CODE
+
+    .col-md-12
+      .row
+        .col-md-10.top-pad-5
+          #paypal-button
+          = hidden_field_tag "paypal-nonce", id: "paypal-nonce"
+      %br
+      .row
+        .col-md-10
+          - if AdminPanel.is_paypal_enabled?
+            = submit_tag("Pay with paypal", id:"pay-with-paypal-btn", class:"btn btn-primary", style:"display:none" )
+          - else
+            Paypal is currently unavailable

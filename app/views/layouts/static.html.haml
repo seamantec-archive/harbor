@@ -1,0 +1,21 @@
+!!!
+%html{:lang=>"en", class:"static"}
+  = render :partial => 'layouts/html_header'
+  -#= content_for :header do
+
+  %body.static
+    =render :partial => "layouts/nav_bar" , locals: { fixed: false }
+
+    -if(current_page?(root_path))
+      = yield
+    -else
+      .container
+        .static_messages
+      #main-container.container
+        .row.content
+          =render "layouts/messages"
+          = yield
+
+    = render :partial => 'layouts/footer'
+
+    = render :partial => 'layouts/analytics_script'

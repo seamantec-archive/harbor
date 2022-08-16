@@ -1,0 +1,6 @@
+= render partial: "testimonials/testimonial", collection: @testimonials
+
+-if current_user.present? && current_user.is_admin?
+  .row
+    .col-md-6
+      = link_to "New", new_testimonial_path

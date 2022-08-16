@@ -1,0 +1,17 @@
+%tr
+  %td
+    = invoice_array.name
+  %td
+    = invoice_array.prefix
+  %td
+    = invoice_array.invoices.count
+  %td
+    = link_to "Show", invoice_array_path(invoice_array), class: "btn btn-sm btn-default"
+  %td
+    -if invoice_array.default_for_web_shop
+      Def for web shop
+    - else
+      = link_to "Set def web",  set_default_web_shop_array_invoice_array_path(invoice_array), class: "btn btn-sm btn-default"
+  %td
+    -if invoice_array.invoices.size == 0
+      = link_to "Destroy", invoice_array_path(invoice_array),method: :delete, data: { confirm: "Are you sure to delete?" }, class: "btn btn-sm btn-default"

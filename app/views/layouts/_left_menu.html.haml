@@ -1,0 +1,130 @@
+.col-xs-12.col-sm-2.col-md-2.side-nav
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          - if current_user.is_admin?
+            Own stuffs
+          - else
+            User menu
+      - if current_user.is_admin?
+        .list-group
+          = link_to "Dashboard", dashboards_path , class: "list-group-item"
+      .list-group
+        = link_to  user_licenses_path(current_user) , class: "list-group-item" do
+          Licenses
+          %span.badge
+            =current_user.licenses.count
+      - if current_user.is_admin?
+        .list-group
+          = link_to "Devices", user_devices_path(user_id: current_user.id) , class: "list-group-item"
+
+      .list-group
+        = link_to "Polar files", user_polars_path(user_id: current_user.id) , class: "list-group-item"
+
+      .list-group
+        = link_to "NMEA log files", user_nmea_logs_path(user_id: current_user.id) , class: "list-group-item"
+
+
+  - if current_user.is_partner?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Partner menu
+        .list-group
+          = link_to "License pools", user_license_pools_path(user_id: current_user.id), class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Users
+
+        .list-group
+          = link_to "Customers", list_customers_users_path, class: "list-group-item"
+        .list-group
+          = link_to "Partners", list_partners_users_path, class: "list-group-item"
+        .list-group
+          = link_to "Administrators", list_admins_users_path, class: "list-group-item"
+        .list-group
+          = link_to "All", users_path, class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Licenses
+
+        .list-group
+          = link_to "Commercial", list_commercial_licenses_path, class: "list-group-item"
+        .list-group
+          = link_to "Demo", list_demo_licenses_path, class: "list-group-item"
+        .list-group
+          = link_to "Trial", list_trial_licenses_path, class: "list-group-item"
+        .list-group
+          = link_to "Coupons", coupons_path, class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            License Templates
+
+        .list-group
+          = link_to "List all", license_templates_path, class: "list-group-item"
+        .list-group
+          = link_to "Create new", new_license_template_path, class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Releases
+        .list-group
+          = link_to "List all", releases_path, class: "list-group-item"
+        .list-group
+          = link_to "Create new", new_release_path, class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Finance
+        .list-group
+          = link_to "Orders", orders_path, class: "list-group-item"
+        .list-group
+          = link_to "Invoice arrays",invoice_arrays_path, class: "list-group-item"
+
+  - if current_user.is_admin?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Public pages
+        .list-group
+          = link_to "Store", product_categories_path, class: "list-group-item"
+        .list-group
+          = link_to "FAQ", faqs_path(user_id: current_user.id), class: "list-group-item"
+        .list-group
+          = link_to "Admin Panel", admin_panels_path, class: "list-group-item"
+        .list-group
+          = link_to "Testimonials",testimonials_path, class: "list-group-item"
+
+        .list-group
+          = link_to "Websockets", websockets_admin_panels_path, class: "list-group-item"
+
+
+  - if current_user.is_admin?
+    .row
+      .col-xs-2
+        %p.small="Version: #{version_const[:version]}"
+        %p.small="Build date: #{version_const[:build_date]}"
+        %p.small="Commit Id: #{version_const[:commit_version].slice(0,20)}"
+
+

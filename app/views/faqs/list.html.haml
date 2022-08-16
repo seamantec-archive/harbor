@@ -1,0 +1,39 @@
+.row.faq
+  - (1..@topics.length).each do |i|
+    - topic = @topics[i-1]
+    .col-xs-12.col-sm-6
+      %h3.top
+        #{i.to_s + ". "}
+        = link_to(topic.name, "##{topic.to_page_id}")
+      %ul.list-unstyled.question
+        - (1..4).each do |j|
+          - if(topic.faq_questions.length>=j)
+            - question = topic.faq_questions[j-1]
+            %li
+              %h4
+                #{i.to_s + "." + j.to_s + ". "}
+                = link_to(question.question, "##{question.to_page_id}")
+          - else
+            = " "
+  .col-xs-12
+    %hr
+  - (1..@topics.length).each do |i|
+    - topic = @topics[i-1]
+    .col-xs-12
+      %h3.full{ id: "#{topic.to_page_id}" }
+        #{i.to_s + ". "}
+        = topic.name
+      - (1..topic.faq_questions.length).each do |j|
+        - question = topic.faq_questions[j-1]
+        %h4.full{ id: "#{question.to_page_id}" }
+          #{i.to_s + "." + j.to_s + ". "}
+          = question.question
+        .answer=@markdown.render(question.answer).html_safe
+  -#- @topics.each do |topic|
+  -#  .col-xs-12
+  -#    %h2{ id: "#{topic.to_page_id}" }
+  -#      = topic.name
+  -#    - topic.faq_questions.each do |question|
+  -#      %h3{ id: "#{question.to_page_id}" }
+  -#        = question.question
+  -#      = @markdown.render(question.answer).html_safe

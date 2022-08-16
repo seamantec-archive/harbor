@@ -1,0 +1,15 @@
+.row.store-row
+  .col-xs-12.col-sm-10.col-sm-offset-1.panel.panel-default
+    %h3
+      = product_category.name
+
+    %p.top-buffer
+      = @markdown.render(product_category.description).html_safe
+
+    .row
+      .col-xs-12
+        %h2
+          .small
+            Buy a new license
+
+    = render partial:"orders/product_item", collection: product_category.product_items

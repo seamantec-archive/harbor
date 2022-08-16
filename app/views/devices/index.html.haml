@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Device name
+          %th Device token
+          %th
+      %tbody
+        = render partial: "device", collection: @devices

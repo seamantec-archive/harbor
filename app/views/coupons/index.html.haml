@@ -1,0 +1,20 @@
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.small #
+          %th.small Name
+          %th.small Number of coupons
+          %th.small Number of unused coupons
+          %th.small Created at
+      %tbody
+        = render partial: "coupon_group", collection: @coupon_groups
+.row
+  .col-md-12
+    = paginate @coupon_groups,:theme => 'twitter-bootstrap-3'
+
+
+.row
+  .col-md-12
+    = link_to "Create coupon group", new_coupon_path, class: "btn btn-default"

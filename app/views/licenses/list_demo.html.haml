@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    %h3 Demo Licenses
+- if can? :manage, License
+  .row
+    .col-md-12
+      = link_to "Create demo license", new_demo_licenses_path, class: "btn btn-default"
+
+
+= render :partial => 'licenses_table'

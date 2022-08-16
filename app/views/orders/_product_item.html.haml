@@ -1,0 +1,18 @@
+-#.row
+-#  .col-xs-9
+-#    %b
+-#      = product_item.name
+-#  .col-xs-3
+-#    %b
+-#      ="#{product_item.currency_symbol}#{product_item.net_price}"
+-#  .col-xs-12.text-right
+-#    = link_to "Buy", new_order_path(product_cat_id: product_item.product_category.id, product_item_id: product_item.id), class: "btn btn-sm btn-success"
+.row.product-item.store-row
+  .col-xs-9
+    %b
+      = product_item.name
+  .col-xs-3.text-right
+    = link_to "Buy", new_order_path(product_cat_id: product_item.product_category.id, product_item_id: product_item.id), class: "btn btn-sm btn-success"
+  .col-xs-12
+    %b
+      ="#{product_item.currency_symbol}#{product_item.net_price}"

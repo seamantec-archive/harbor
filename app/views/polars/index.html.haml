@@ -1,0 +1,28 @@
+.row
+  .col-md-12
+    .row
+      .col-md-12
+        = form_for(@empty_polar, url:user_polars_path(user_id: @user.id), html:{:class=>"form-horizontal"}) do |f|
+          .form-group
+            = f.label :name, :class=>"col-md-2 control-label"
+            .col-md-4
+              = f.text_field :name, :class=>"form-control col-md-2"
+          .form-group
+            =f.label :file, class: "col-md-2 control-label"
+            .col-md-4
+              = f.file_field :file
+            .col-md-4.text-right= f.submit "Upload", class:"btn btn-default"
+%hr
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Polar name
+          %th Polar created at
+          %th
+          -#%th
+          %th
+      %tbody
+        = render partial: "polar", collection: @polars

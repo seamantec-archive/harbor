@@ -1,0 +1,22 @@
+.row
+  = render partial: "users/filter_form", locals:{filter_path_var: filter_path_var}
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.small #
+          %th.small email
+          %th.small name
+          %th.small created at
+          %th.small sign in count
+          %th.small devices
+          %th.small polars
+          %th.small edit
+          -#%th
+      %tbody
+        = render :partial => "users/user", collection: @users
+.row
+  .col-md-12
+    = paginate @users,:theme => 'twitter-bootstrap-3'

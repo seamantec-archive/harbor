@@ -1,0 +1,14 @@
+.row
+  .col-md-12
+    = "#{@coupon_group.name}"
+.row
+  .col-md-12
+    - @coupon_group.coupons.each do |coupon|
+      .row
+        .col-md-4
+          = coupon.full_code
+        .col-md-4
+          = coupon.printed
+        .col-md-4
+          - if coupon.license.present?
+            = link_to coupon.license.user.email, user_path(coupon.license.user)

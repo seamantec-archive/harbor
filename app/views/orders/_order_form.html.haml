@@ -1,0 +1,157 @@
+= fields_for @order.product_item do |pif|
+  = pif.hidden_field :id
+= fields_for @order.product_category do |pcf|
+  = pcf.hidden_field :id
+.row.new-order-row
+  .col-xs-12
+    .well
+      .row
+        .col-xs-7.col-sm-9.col-md-8.top-pad-5
+          %b
+            = @order.product_item.name
+        .col-xs-3.col-sm-1.col-md-2.text-right
+          = f.text_field :number_of_items, class: "form-control"
+        .col-xs-2.col-sm-2.col-md-2.top-pad-5
+          %b.product_items_value
+            = "#{@order.product_item.currency_symbol}#{sprintf('%.2f', (@order.product_item.net_price*@order.number_of_items))}"
+
+.row.new-order-row
+  .col-xs-12
+    %h3 Contact information
+
+
+.row.new-order-row
+  .col-xs-12
+    .row
+      = fields_for @order.user do |uf|
+        .form-group.col-xs-12.col-md-6
+          = uf.label :first_name, class: "col-md-4 control-label"
+          .col-md-8
+            = uf.text_field :first_name, class:"form-control", disabled:(current_user == @order.user ? true :false)
+        .form-group.col-xs-12.col-md-6
+          = uf.label :last_name, class: "col-md-4 control-label"
+          .col-md-8
+            = uf.text_field :last_name, class:"form-control", disabled:(current_user == @order.user ? true :false)
+
+        .form-group.col-xs-12.col-md-6
+          = uf.label :email , :class=>"col-md-4 control-label"
+          .col-md-8
+            = uf.email_field :email, :class=>"form-control", disabled:(current_user == @order.user ? true :false)
+        .form-group.col-xs-12.col-md-6
+          = uf.label :email_confirmation , :class=>"col-md-4 control-label"
+          .col-md-8
+            = uf.email_field :email_confirmation, value: @order.user.email, :class=>"form-control", disabled:(current_user == @order.user ? true :false)
+        - if current_user.blank?
+          .form-group
+            .col-xs-12.col-md-offset-2
+              .checkbox
+                %label
+                  = check_box_tag 'sign_up', true, (defined?(@sign_up) ? @sign_up : false)
+                  Set up a password for sign up
+          .password-fields{style:"display:none"}
+            .form-group.col-xs-12.col-md-6
+              = uf.label :password, class: "col-md-4 control-label"
+              .col-md-8
+                = uf.password_field :password, :class=>"form-control"
+            .form-group.col-xs-12.col-md-6
+              = uf.label :password_confirmation, class: "col-md-4 control-label"
+              .col-md-8
+                = uf.password_field :password_confirmation, :class=>"form-control"
+      = fields_for @order.user.company_info do |ucif1|
+        .form-group.col-xs-12.col-md-6
+          = ucif1.label :name, "Company" , :class=>"col-md-4 control-label"
+          .col-md-8
+            = ucif1.text_field :name, :class=>"form-control"
+
+%hr
+
+.row.new-order-row
+  .col-xs-12
+    %h3 Billing address
+.row.new-order-row
+  .col-xs-12
+    .row
+      = fields_for @order.user.billing_address do |baf|
+        .form-group.col-md-12
+          = baf.label :country, :class=>"col-md-2 control-label"
+          .col-md-4
+            = baf.country_select :country , {selected: "HU"}, { class: 'form-control vat_id_validation_trigger' }
+        .form-group.col-md-12
+          = baf.label :address,  class: "col-md-2 control-label"
+          .col-md-8
+            = baf.text_field :address, class:"form-control"
+        .form-group.col-md-12
+          = baf.label :address_2,  class: "col-md-2 control-label"
+          .col-md-8
+            = baf.text_field :address_2, class:"form-control"
+        .form-group.col-md-12
+          = baf.label :city,  class: "col-md-2 control-label"
+          .col-md-4
+            = baf.text_field :city, class:"form-control"
+        .form-group.col-md-12
+          = baf.label :zip_code,  class: "col-md-2 control-label"
+          .col-md-2
+            = baf.text_field :zip_code, class:"form-control"
+    .row
+      = fields_for @order.user.company_info do |ucfi2|
+        .form-group.col-md-12
+          = ucfi2.label :vat_id, "VAT ID <span class='glyphicon glyphicon-info-sign'/>".html_safe, { class: "col-md-2 control-label left-tooltip", "data-toggle"=> "tooltip", title: "If you are an EU company please provide your VAT ID, to validate it." }
+          .col-md-3
+            = ucfi2.text_field :vat_id, class:"form-control vat_id_validation_trigger"
+
+-#%hr
+-#.row.new-order-row
+-#  .col-xs-12
+-#    %h3#payment-method
+-#      Payment method
+-#      %span.glyphicon.glyphicon-info-sign{class:"right-tooltip", title: "You can pay with PayPal or Credit card."}
+-#.row
+-#  .col-xs-12
+= fields_for @order.payment do |pf|
+  = pf.hidden_field :payment_method, value: Payment::METHOD_BRAINTREE
+  -#.row.new-order-row
+  -#  .col-xs-10.col-xs-offset-1
+  -#    .radio
+  -#      %label.control-label
+  -#        = pf.radio_button :payment_method, "paypal", {checked:true}
+  -#        %img{src: "https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif"}
+  -#        = render :partial => 'orders/paypal_tooltip'
+  -#  .col-xs-10.col-xs-offset-1
+  -#    .radio
+  -#      %label.control-label
+  -#        = pf.radio_button :payment_method, "braintree"
+  -#        Credit card
+
+%hr
+= render partial: "orders/payment_summary"
+
+=fields_for @order.user do |uf|
+  .form-group.row.new-order-row
+    .col-xs-12
+      .checkbox
+        %label
+          = uf.check_box :accepted_newsletter
+          I subscribe to the newsletter and acknowledge that the newsletters may contain direct marketing and advertising messages.
+  .form-group.row.new-order-row
+    .col-xs-12
+      .checkbox
+        %label
+          = uf.check_box :accepted_terms
+          I have read, understood and hereby accept the
+          = link_to "General Terms and Conditions of Purchase", terms_path, target: "_blank"
+          and the
+          = link_to "Data Protection Policy", data_protection_path, target: "_blank"
+          ="."
+
+.form-group.row.new-order-row
+  .col-xs-12
+    .checkbox
+      %label
+        = f.check_box :accepted_digital_content,{}, "true", "false"
+        .small
+          I acknowledge and accept that the software or other digitally downloadable product I order from Seller qualifies as “digital content” within the meaning of the the Directive 2011/83/EU of The European Parliament And Of The Council of 25 October 2011 on consumer rights and the Hungarian Gov. Decree 45/2014 (II. 26.) on the detailed conditions of contract between consumers and traders, therefore I agree that Seller may begin to start the performance of the Agreement and provide me with the downloadable Product and provide you with the serial key immediately on purchase. I acknowledge that by giving my prior express consent for Seller to start the performance, I lose my right of withdrawal regulated in the above Gov. Decree., if as a consumer I would otherwise be entitled to such right.
+
+%br
+.row.new-order-row
+  .col-xs-12
+    = submit_tag "Place order", class:"btn btn-primary btn-sm"

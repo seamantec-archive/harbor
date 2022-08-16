@@ -1,0 +1,104 @@
+.row
+
+  -#=render partial: "users/side_user_list", locals:{selected_email:@user.email}
+
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-xs-6
+            %h5
+              =@user.email
+          .col-xs-6.text-right
+            =link_to "Edit", edit_user_path(@user), class:"btn btn-primary"
+            =link_to( "Delete", user_path(@user),{ method: :delete, confirm: "Are you sure?", class:"btn btn-danger"})
+
+      .panel-body
+        %ul.list-group
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Name
+              .col-xs-6
+                =@user.full_name
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Sign in count
+              .col-xs-6
+                %span.badge=@user.sign_in_count
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Current sign in at
+              .col-xs-6
+                =@user.current_sign_in_at.to_s
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Current sign in IP
+              .col-xs-6
+                =@user.current_sign_in_ip
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Last sign in at
+              .col-xs-6
+                =@user.last_sign_in_at.to_s
+          %li.list-group-item
+            .row
+              .col-xs-4
+                Last sign in ip
+              .col-xs-6
+                =@user.last_sign_in_ip
+          - if current_user.is_admin?
+            %li.list-group-item
+              .row
+                .col-xs-4
+                  Roles
+                .col-xs-6
+                  - @user.roles.select{|r| r.selected}.each do |r|
+                    = r.role + " "
+
+            %li.list-group-item
+              .row
+                .col-xs-4
+                  Accepted terms
+                .col-xs-6
+                  = @user.accepted_terms
+            %li.list-group-item
+              .row
+                .col-xs-4
+                  Accepted news letter
+                .col-xs-6
+                  = @user.accepted_newsletter
+            %li.list-group-item
+              .row
+                .col-xs-4
+                  = link_to "License pools", user_license_pools_path(user_id: @user)
+                .col-xs-6
+                  %span.badge=@user.license_pools.count
+            %li.list-group-item
+              .row
+                .col-xs-4
+                  = link_to "Orders", orders_path(user_id: @user.id)
+                .col-xs-6
+                  %span.badge=@user.orders.count
+          %li.list-group-item
+            .row
+              .col-xs-4
+                = link_to "Licenses", user_licenses_path(@user)
+              .col-xs-6
+                %span.badge=@user.licenses.count
+          %li.list-group-item
+            .row
+              .col-xs-4
+                = link_to "Devices",user_devices_path(user_id:@user)
+              .col-xs-6
+                %span.badge=@user.devices.count
+          %li.list-group-item
+            .row
+              .col-xs-4
+                = link_to "Polars", user_polars_path(user_id: @user)
+              .col-xs-6
+                %span.badge=@user.polars.count

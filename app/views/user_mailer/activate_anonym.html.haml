@@ -1,0 +1,11 @@
+%h4
+  Ahoy
+  = @user.first_name
+
+%p
+  We have activated your Seamantec Harbor cloud account.
+
+%p
+  Set your password and start to use it!
+%p
+  = link_to 'Set my password', edit_password_with_token_user_url(@user, reset_password_token: @token)

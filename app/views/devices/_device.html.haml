@@ -1,0 +1,5 @@
+%tr
+  %td= device_counter+1
+  %td= device.name
+  %td= device.token
+  %td= link_to "Delete", user_device_path(user_id: device.user.id, id: device.id), method: :delete, data: { confirm: "Are you sure?"}

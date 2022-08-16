@@ -1,0 +1,11 @@
+.row
+  .col-xs-3.col-xs-offset-1.col-sm-2.col-sm-offset-3.order-step-parent
+    .order-steps.left-step{class:"#{active == "first" ? "active-step" :""}"}
+      1. Place order
+  .col-xs-3.col-sm-2.order-step-parent
+    .order-steps.middle-step{class:"#{active == "middle" ? "active-step" :""}"}
+      2. Review, checkout
+  .col-xs-3.col-sm-2.order-step-parent
+    .order-steps.right-step{class:"#{active == "last" ? "active-step" :""}"}
+      3. Get license
+%hr

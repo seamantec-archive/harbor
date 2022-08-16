@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    = form_for(@question, url: update_question_faqs_path(id: params[:id], topic_id: params[:topic_id]), html: { class: "col-xs-12" } ) do |f|
+      .form-group
+        = f.label :question, class: "control-label"
+        = f.text_area :question, class: "form-control"
+      .form-group
+        = f.label :answer, class: "control-label"
+        = f.text_area :answer, class: "form-control", rows: "8"
+      = f.submit "Update", class: "btn btn-default"

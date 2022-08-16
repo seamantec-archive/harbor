@@ -1,0 +1,5 @@
+.row
+  .col-xs-12.col-md-10.col-md-offset-1
+    %h1 Register and download free demo
+
+= render partial: "new_public_trial_form", locals:{with_download: true,  release_id: @release.id, os: @os}

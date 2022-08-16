@@ -1,0 +1,14 @@
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Number of licenses
+          -#%th
+      %tbody
+        = render :partial => "license_templates/license_template", collection: @license_templates
+.row
+  .col-md-12
+    = paginate @license_templates,:theme => 'twitter-bootstrap-3'
